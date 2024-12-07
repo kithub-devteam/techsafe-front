@@ -6,11 +6,11 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const login = async (credentials) => {
+    const login = async (credentials = "") => {
+
         try {
-            // Ici, vous implementerez votre logique d'authentification
-            // const response = await votreFonctionLogin(credentials);
-            setUser("janeiro hurley");
+            localStorage.setItem("token", "janeiro hurley")
+            setUser("janeiro hurley")
             return true;
         } catch (error) {
             console.error('Erreur de connexion:', error);
@@ -19,6 +19,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
+        localStorage.removeItem("token");
         setUser(null);
         // Ajoutez ici la logique de déconnexion (ex: supprimer le token du localStorage)
     };
@@ -27,8 +28,15 @@ export const AuthProvider = ({ children }) => {
         // Vérifier si l'utilisateur est déjà connecté au chargement
         const checkAuth = async () => {
             try {
+                setTimeout(() => {
+                    const token = localStorage.getItem("token")
+                    if (token) {
+                        setUser(token);
+                    }
+                    setLoading(false);
+                }, 5 * 0);
                 // Vérifiez ici le token stocké ou autre méthode d'auth persistante
-                setLoading(false);
+
             } catch (error) {
                 console.error('Erreur de vérification auth:', error);
                 setLoading(false);

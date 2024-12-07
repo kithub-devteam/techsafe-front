@@ -1,24 +1,31 @@
-import React, { useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import {
   Navigate,
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
 import { ProtectedRoutes } from "./ProtectedRoutes";
-
+// =========error handle====================
 import ErrorPage from "./componnents/PageError";
 import ErrorBoundary from "./componnents/ErrorBoundary";
-const fakeDelay = async (promise) => {
-  await new Promise((resolve) => {
-    setTimeout(resolve, 1000);
-  });
-  return promise;
-};
+// -==================authentifications==================
+import { useAuth } from "../Authentications";
+// ================pages==================
 
+const Home = React.lazy(() => import("../pages/home"));
+const Login = React.lazy(() => import("../pages/login"));
+const Signup = React.lazy(() => import("../pages/signup"));
 
 const Routes = () => {
-  const [token, setToken] = useState(true)
+  const { user, loading } = useAuth()
+  const [token, setToken] = useState(null)
 
+  useEffect(() => {
+    setToken(!!user)
+  }, [user, loading])
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   // Define public routes accessible to all users
   const PublicRoutes = [
     {
@@ -40,7 +47,10 @@ const Routes = () => {
         {
           path: "/",
           element: (
-            <div>home page</div>
+            <Suspense fallback={<div>Loading......</div>}>
+
+              <Home />
+            </Suspense>
           ),
           errorElement: <ErrorPage />
         },
@@ -59,11 +69,11 @@ const Routes = () => {
   const UnauthenticatedRoutes = [
     {
       path: "/login",
-      element: <div>Login page </div>,
+      element: <Suspense fallback={<div>Loading......</div>}><Login /></Suspense>,
     },
     {
       path: "/signup",
-      element: <div>signup page </div>
+      element: <Suspense fallback={<div>Loading......</div>}><Signup /></Suspense>
     },
     {
       path: "/change-password/:email",

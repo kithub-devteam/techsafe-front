@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import { useAuth } from "../Authentications";
 export const ProtectedRoutes = () => {
   const navigate = useNavigate();
-  // Vérifier le token dans localStorage ou sessionStorage
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   // Check if the user is authenticated
+  const { user, loading } = useAuth()
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!user) {
       // If not authenticated, redirect to the login page
       navigate("/login");
     }
-  }, [isAuthenticated]);
+  }, [user,navigate]);
+
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   // If authenticated, render the child routes
   return <Outlet />;
 };

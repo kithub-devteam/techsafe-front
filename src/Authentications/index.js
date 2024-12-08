@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState("jajaj");
     const [loading, setLoading] = useState(true);
 
     const login = async (credentials = "") => {

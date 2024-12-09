@@ -4,7 +4,7 @@ import api from '../services/api';
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState("jajaj");
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     const login = async (credentials = "") => {
@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
             if (response.status === 200) {
                 localStorage.setItem("access", response.data.access);
                 localStorage.setItem("refresh", response.data.refresh);
-                // await fetchUserData();
+                await fetchUserData();
                 setUser(response.data.user);
                 return true;
             }
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
     const fetchUserData = async () => {
         try {
-            const response = await api.get("user/me/");
+            const response = await api.get("user-from-token/");
             if (response.status === 200) {
                 setUser(response.data);
             }
@@ -42,6 +42,7 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem("access");
         localStorage.removeItem("refresh");
+        localStorage.removeItem("success");
         setUser(null);
         // Ajoutez ici la logique de déconnexion (ex: supprimer le token du localStorage)
     };

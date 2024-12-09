@@ -4,7 +4,8 @@ import facebook from "../../assets/facebook.png"
 import logo from "../../assets/logo.png"
 import google from "../../assets/google.png"
 import twiter from "../../assets/twiter.png"
-import { IoIosMail, IoIosLock, IoIosEye, IoIosEyeOff } from "react-icons/io";
+import { LuMailX } from "react-icons/lu";
+import { IoIosMail, IoIosLock, IoIosEye, IoIosEyeOff, IoIosCall } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 const Login = () => {
@@ -28,7 +29,9 @@ const Login = () => {
     const handleSubmit = async () => {
         setLoading(true);
         setError('');
-        
+
+
+
 
         try {
             const result = await login(formData);
@@ -40,6 +43,26 @@ const Login = () => {
         } finally {
             setLoading(false);
         }
+    };
+
+    const isPhoneNumber = (value) => {
+        // Vérifie si la valeur est une chaîne de caractères
+        if (typeof value !== 'string') return false;
+
+        // Nettoie la chaîne en ne gardant que les chiffres et le +
+        const cleanedValue = value.replace(/[^\d+]/g, '');
+
+        // Vérifie les formats suivants:
+        // - Numéros internationaux commençant par + (ex: +33612345678)
+        // - Numéros locaux (ex: 0612345678)
+        const numberPattern = /^(?:\+\d{1,4}|0)\d{10,}$/;
+
+        return numberPattern.test(cleanedValue);
+    };
+
+    const isEmail = (value) => {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(value);
     };
 
     return (
@@ -84,14 +107,20 @@ const Login = () => {
                         <div className="lg:w-3/5 h-max m-auto mt-5 lg:mt-10 flex flex-col gap-4">
 
                             <div className="w-full h-[50px] rounded-xl  bg-[#E3E3E3] relative">
-                                <IoIosMail className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" />
+                                {
+                                    isPhoneNumber(formData.identifier) ?
+                                        <IoIosCall className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2 " /> :
+                                        isEmail(formData.identifier) ?
+                                            <IoIosMail className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" /> :
+                                            <LuMailX className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" />
+                                }
                                 <input
                                     type="text"
                                     className="w-full rounded-xl h-full border-0 outline-0 bg-inherit pl-10"
                                     name="identifier"
                                     value={formData.identifier}
                                     onChange={handleChange}
-                                    placeholder="Email/Numero de telephone"
+                                    placeholder="Email/+25762471784"
                                 />
                             </div>
                             <div className="w-full h-[50px] rounded-xl  bg-[#E3E3E3] relative">

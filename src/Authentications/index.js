@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import api from '../services/api';
 
 const AuthContext = createContext(null);
 
@@ -7,36 +8,52 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     const login = async (credentials = "") => {
-
         try {
-            localStorage.setItem("token", "janeiro hurley")
-            setUser("janeiro hurley")
-            return true;
+            const response = await api.post("login/", {
+                login: credentials.identifier,
+                password: credentials.password
+            });
+
+            if (response.status === 200) {
+                localStorage.setItem("access", response.data.access);
+                localStorage.setItem("refresh", response.data.refresh);
+                // await fetchUserData();
+                setUser(response.data.user);
+                return true;
+            }
+            return false;
         } catch (error) {
             console.error('Erreur de connexion:', error);
             return false;
         }
     };
 
+    const fetchUserData = async () => {
+        try {
+            const response = await api.get("user/me/");
+            if (response.status === 200) {
+                setUser(response.data);
+            }
+        } catch (error) {
+            console.error('Erreur lors de la récupération des données utilisateur:', error);
+        }
+    };
+
     const logout = () => {
-        localStorage.removeItem("token");
+        localStorage.removeItem("access");
+        localStorage.removeItem("refresh");
         setUser(null);
         // Ajoutez ici la logique de déconnexion (ex: supprimer le token du localStorage)
     };
 
     useEffect(() => {
-        // Vérifier si l'utilisateur est déjà connecté au chargement
         const checkAuth = async () => {
             try {
-                setTimeout(() => {
-                    const token = localStorage.getItem("token")
-                    if (token) {
-                        setUser(token);
-                    }
-                    setLoading(false);
-                }, 5 * 0);
-                // Vérifiez ici le token stocké ou autre méthode d'auth persistante
-
+                const accessToken = localStorage.getItem("access");
+                if (accessToken) {
+                    await fetchUserData();
+                }
+                setLoading(false);
             } catch (error) {
                 console.error('Erreur de vérification auth:', error);
                 setLoading(false);

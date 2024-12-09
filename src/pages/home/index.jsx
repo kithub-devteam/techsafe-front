@@ -5,7 +5,7 @@ const Home = () => {
 
     return (
         <div className="w-full h-screen bg-white">
-            Home page {user} click to logout
+            Home page {user?.username} votre email est {user?.email}  click to logout
              <button className="bg-red-500" onClick={logout} type="button">
                 here
 

@@ -15,24 +15,44 @@ import Personnel from "./Personnel"
 import { SiMinutemailer } from "react-icons/si";
 import Verification from "./verification"
 import { GrNext } from "react-icons/gr";
+import api from "../../services/api";
+
+
 
 const Signup = () => {
-    const [type, setType] = useState({
-        entreprise: false,
-        ong: false,
-        personnel: true
-    })
-    const [isFocused, setIsFocused] = useState(false)
-    const [nextpage, setNextpage] = useState(false)
-    const [showPassword, setShowPassword] = useState(false)
-    const [verification, setVerification] = useState(false)
-    const [strength, setStrength] = useState({
+    const [loading, setLoading] = useState(false);
+    const [isFocused, setIsFocused] = useState(false)//pour savoir si le mot de passe est focus
+    const [nextpage, setNextpage] = useState(false)//pour savoir si on est sur la page de additionnal data
+    const [showPassword, setShowPassword] = useState(false)//pour savoir si on affiche le mot de passe ou son oeil
+    const [verification, setVerification] = useState(false)//pour savoir si on est sur la page de verification
+    const [strength, setStrength] = useState({//pour savoir la force du mot de passe
         strength: 0,
         color: "red"
     })
-    const [passwordValue, setPasswordValue] = useState("");
 
-    const debouncedCalculateStrength = useCallback(
+    const [data, setData] = useState({//les données de l'utilisateur
+        username: "",//le username de l'utilisateur
+        email: "",//l'email de l'utilisateur
+        password: "",//le mot de passe de l'utilisateur
+        password_confirm: "",//le mot de passe de l'utilisateur retapé
+        role: "personnel",//le type de compte de l'utilisateur par defaut
+        idrole: null,//l'id du role de l'utilisateur par defaut
+        additionalData: {}//les données additionnelles de l'utilisateur selon le type de compte choisi
+    })
+
+    const handleChange = ({ currentTarget: input }) => {//pour changer les données de l'utilisateur lors d'un changement de valeur
+        setData({ ...data, [input.name]: input.value });
+    };
+
+    const handleChangeAdditionalData = ({ currentTarget: input }) => {//pour changer les données additionnelles de l'utilisateur lors d'un changement de valeur
+        setData({ ...data, additionalData: { ...data.additionalData, [input.name]: input.value } });
+    };
+
+    const changeAccountType = (type) => {//pour changer le type de compte de l'utilisateur
+        setData({ ...data, role: type });
+    };
+
+    const debouncedCalculateStrength = useCallback(//pour calculer la force du mot de passe avec un debounce
         debounce((value) => {
             const result = calcutStrength(value);
             setStrength(result);
@@ -40,7 +60,7 @@ const Signup = () => {
         []
     );
 
-    function debounce(func, wait) {
+    function debounce(func, wait) {//pour faire un debounce
         let timeout;
         return function executedFunction(...args) {
             const later = () => {
@@ -52,34 +72,77 @@ const Signup = () => {
         };
     }
 
-    useEffect(() => {
-        debouncedCalculateStrength(passwordValue);
+    useEffect(() => {//pour calculer la force du mot de passe avec un debounce lors d'un changement de valeur du mot de passe
+        debouncedCalculateStrength(data.password);
         return () => debouncedCalculateStrength.cancel;
-    }, [passwordValue, debouncedCalculateStrength]);
+    }, [data.password, debouncedCalculateStrength]);
 
-    const calcutStrength = (password) => {
-        const hasUpperCase = /[A-Z]/.test(password);
-        const hasLowerCase = /[a-z]/.test(password);
-        const hasNumbers = /\d/.test(password);
-        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-        const isLongEnough = password.length >= 6;
+    const calcutStrength = (password) => {//la fonction pour calculer la force du mot de passe
+        const hasUpperCase = /[A-Z]/.test(password);//pour savoir si le mot de passe contient une lettre majuscule
+        const hasLowerCase = /[a-z]/.test(password);//pour savoir si le mot de passe contient une lettre minuscule
+        const hasNumbers = /\d/.test(password);//pour savoir si le mot de passe contient un nombre
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);//pour savoir si le mot de passe contient un caractère spécial
+        const isLongEnough = password.length >= 6;//pour savoir si le mot de passe est long enough
 
-        let newStrength = 0;
-        let color = "red";
+        let newStrength = 0;//la force du mot de passe
+        let color = "red";//la couleur de la force du mot de passe par defaut
 
-        if (hasUpperCase) newStrength += 1;
-        if (hasLowerCase) newStrength += 1;
-        if (hasNumbers) newStrength += 1;
-        if (hasSpecialChar) newStrength += 1;
-        if (isLongEnough) newStrength += 1;
+        if (hasUpperCase) newStrength += 1;//si le mot de passe contient une lettre majuscule, on augmente la force de 1
+        if (hasLowerCase) newStrength += 1;//si le mot de passe contient une lettre minuscule, on augmente la force de 1    
+        if (hasNumbers) newStrength += 1;//si le mot de passe contient un nombre, on augmente la force de 1
+        if (hasSpecialChar) newStrength += 1;//si le mot de passe contient un caractère spécial, on augmente la force de 1
+        if (isLongEnough) newStrength += 1;//si le mot de passe est long enough, on augmente la force de 1
 
         if (newStrength >= 4) {
-            color = "green";
+            color = "green";//si la force du mot de passe est >= 4, on change la couleur en green
         } else if (newStrength >= 2) {
-            color = "yellow";
+            color = "yellow";//si la force du mot de passe est >= 2, on change la couleur en yellow
         }
 
-        return { strength: newStrength, color: color };
+        return { strength: newStrength, color: color };//on retourne la force et la couleur de la force du mot de passe
+    }
+    const CheckIsNumberOrEmail = (value) => {//la fonction pour vérifier si la valeur est un numéro de téléphone ou un email
+        return /^\d+$/.test(value) || /^\S+@\S+$/.test(value);
+    }
+
+
+    const handleSubmit = async () => {//la fonction pour envoyer les données de l'utilisateur à l'api
+        console.log(data);
+        if (data.password !== data.password_confirm) {//si les mots de passe ne correspondent pas
+            alert("Les mots de passe ne correspondent pas");
+            return;
+        }
+        if (!CheckIsNumberOrEmail(data.email)) {//si l'email ou le numéro de téléphone est invalide
+            alert("L'email ou le numéro de téléphone est invalide");
+            return;
+        }
+        for (const key in data) {//pour chaque donnée de l'utilisateur
+            if (key === 'additionalData') {
+                // Appliquer trim sur toutes les valeurs de additionalData
+                for (const subKey in data.additionalData) {
+                    if (data.additionalData[subKey]) {
+                        data.additionalData[subKey] = data.additionalData[subKey].trim();
+                    }
+                }
+                continue;
+            }
+            if (!data[key]) continue; // on skip les valeurs vides
+            data[key] = data[key].trim();//on retire les espaces
+        }
+        setLoading(true);
+        try {
+            const responseRoles = await api.get("roles/");
+            console.log(responseRoles);
+            if (responseRoles.status === 200) {
+                data.idrole = responseRoles.data.find(role => role.name === data.role).id;
+                const response = await api.post("signup/", data);
+                console.log(response);
+            }
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
@@ -122,17 +185,17 @@ const Signup = () => {
                         {/* ================les type comptes================= */}
                         <div className="grid grid-cols-3 gap-5 w-full md:w-3/5 m-auto h-[80px]">
 
-                            <div onClick={() => setType({ ong: false, personnel: false, entreprise: true })} className={`bg-[#E9FBFB]  cursor-pointer flex items-center justify-center rounded-2xl flex-col gap-3 hover:border-2 hover:border-[blue] ${type.entreprise ? "border-2 border-[blue]" : ""}`}>
+                            <div onClick={() => changeAccountType("entreprise")} className={`bg-[#E9FBFB]  cursor-pointer flex items-center justify-center rounded-2xl flex-col gap-3 hover:border-2 hover:border-[blue] ${data.role === "entreprise" ? "border-2 border-[blue]" : ""}`}>
                                 <IoMdBusiness className="text-[#606060] text-2xl" />
                                 <div className="text-center text-base hover:text-[blue] text-[#606060]">Entreprise</div>
                             </div>
-                            <div onClick={() => setType({ personnel: false, entreprise: false, ong: true })} className={`bg-[#E9FBFB] cursor-pointer flex items-center justify-center rounded-2xl flex-col gap-3 hover:border-2 hover:border-[blue] ${type.ong ? "border-2 border-[blue]" : ""}`}>
+                            <div onClick={() => changeAccountType("ong")} className={`bg-[#E9FBFB] cursor-pointer flex items-center justify-center rounded-2xl flex-col gap-3 hover:border-2 hover:border-[blue] ${data.role === "ong" ? "border-2 border-[blue]" : ""}`}>
 
                                 <GiWorld className="text-[#606060] text-2xl" />
                                 <div className="text-center text-base hover:text-[blue] text-[#606060]">ONG</div>
 
                             </div>
-                            <div onClick={() => setType({ personnel: true, entreprise: false, ong: false })} className={`bg-[#E9FBFB] cursor-pointer flex items-center justify-center rounded-2xl flex-col gap-3 hover:border-2 hover:border-[blue] ${type.personnel ? "border-2 border-[blue]" : ""}`}>
+                            <div onClick={() => changeAccountType("personnel")} className={`bg-[#E9FBFB] cursor-pointer flex items-center justify-center rounded-2xl flex-col gap-3 hover:border-2 hover:border-[blue] ${data.role === "personnel" ? "border-2 border-[blue]" : ""}`}>
 
                                 <BsPersonStanding className="text-[#606060] text-2xl" />
                                 <div className="text-center hover:text-[blue] text-[#606060] text-base">Personnel</div>
@@ -148,12 +211,12 @@ const Signup = () => {
                                 <div className="md:w-3/5 w-full h-max m-auto mt-7 flex flex-col gap-2">
                                     <div className="w-full h-[40px] rounded-xl  bg-[#E3E3E3] relative">
                                         <IoIosPerson className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" />
-                                        <input type="text" className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit text-base " name="nom" id="nom" placeholder="Nom" />
+                                        <input type="text" onChange={handleChange} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit text-base " name="username" id="username" value={data.username} placeholder="Nom" />
                                     </div>
                                     <div className="w-full h-[40px] rounded-xl  bg-[#E3E3E3] relative">
                                         <IoIosMail className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" />
                                         <SiMinutemailer onClick={() => setVerification(true)} className="text-[#606060] text-2xl absolute right-2 top-1/2 -translate-y-1/2" />
-                                        <input type="text" className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit " name="email" id="eamil" placeholder="Email/Numero de telephone" />
+                                        <input type="text" onChange={handleChange} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit " name="email" id="eamil" value={data.email} placeholder="Email/Numero de telephone" />
                                     </div>
                                     <div className="w-full h-[40px] rounded-xl  bg-[#E3E3E3] relative">
                                         <IoIosLock className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" />
@@ -161,25 +224,25 @@ const Signup = () => {
                                             showPassword ? <IoIosEyeOff onClick={() => setShowPassword(!showPassword)} className="cursor-pointer text-[#606060] text-2xl absolute right-2 top-1/2 -translate-y-1/2" /> :
                                                 <IoIosEye onClick={() => setShowPassword(!showPassword)} className="cursor-pointer text-[#606060] text-2xl absolute right-2 top-1/2 -translate-y-1/2" />
                                         }
-                                        <input 
-                                            onChange={(e) => setPasswordValue(e.target.value)} 
+                                        <input
+                                            onChange={handleChange}
                                             onFocus={() => setIsFocused(true)}
                                             onBlur={() => setIsFocused(false)}
-                                            value={passwordValue}
-                                            type={showPassword ? "text" : "password"} 
-                                            className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit" 
-                                            name="password" 
-                                            id="password" 
-                                            placeholder="Nouveau mot de passe" 
+                                            value={data.password}
+                                            type={showPassword ? "text" : "password"}
+                                            className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit"
+                                            name="password"
+                                            id="password"
+                                            placeholder="Nouveau mot de passe"
                                         />
                                     </div>
                                     {
-                                        isFocused &&  <MetterInput strength={strength.strength} color={strength.color} />
+                                        isFocused && <MetterInput strength={strength.strength} color={strength.color} />
                                     }
-                                   
+
                                     <div className="w-full h-[40px] rounded-xl  bg-[#E3E3E3] relative">
                                         <IoIosLock className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" />
-                                        <input type="password" className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit" name="password-2" id="password-2" placeholder="Retapez le mot de passe" />
+                                        <input type="password" onChange={handleChange} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit" name="password_confirm" value={data.password_confirm} id="password_confirm" placeholder="Retapez le mot de passe" />
                                     </div>
                                     <div onClick={() => setNextpage(true)} className="w-1/2 h-[20px] bg-[#0008e26c] m-auto text-white rounded-[15px] text-center flex items-center p-4 mt-4 justify-center cursor-pointer">
                                         Continue <GrNext className="text-sm" />
@@ -191,13 +254,31 @@ const Signup = () => {
                             )
                         }
                         {
-                            nextpage && type.entreprise && <Entreprise setNextpage={setNextpage} />
+                            nextpage && data.role === "entreprise" && <Entreprise
+                                data={data}
+                                setNextpage={setNextpage}
+                                handleChangeAdditionalData={handleChangeAdditionalData}
+                                handleSubmit={handleSubmit}
+                                loading={loading}
+                            />
                         }
                         {
-                            nextpage && type.ong && <Ong setNextpage={setNextpage} />
+                            nextpage && data.role === "ong" && <Ong
+                                data={data}
+                                setNextpage={setNextpage}
+                                handleChangeAdditionalData={handleChangeAdditionalData}
+                                handleSubmit={handleSubmit}
+                                loading={loading}
+                            />
                         }
                         {
-                            nextpage && type.personnel && <Personnel setNextpage={setNextpage} />
+                            nextpage && data.role === "personnel" && <Personnel
+                                data={data}
+                                setNextpage={setNextpage}
+                                handleChangeAdditionalData={handleChangeAdditionalData}
+                                handleSubmit={handleSubmit}
+                                loading={loading}
+                            />
                         }
                         {
                             !nextpage && <div className="w-full grid grid-cols-3 h-max mt-5 ">

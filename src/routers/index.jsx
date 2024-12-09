@@ -15,6 +15,7 @@ import { useAuth } from "../Authentications";
 const Home = React.lazy(() => import("../pages/home"));
 const Login = React.lazy(() => import("../pages/login"));
 const Signup = React.lazy(() => import("../pages/signup"));
+const Conversations = React.lazy(() => import("../pages/conversations/index"));
 
 const Routes = () => {
   const { user, loading } = useAuth()
@@ -35,6 +36,15 @@ const Routes = () => {
     {
       path: "/about-us",
       element: <div>About Us</div>,
+    },
+    {
+      path: "/conversations",
+      element: (
+        <Suspense fallback={<div>Loading......</div>}>
+          <Conversations />
+        </Suspense>
+      ),
+      errorElement: <ErrorPage />
     },
   ];
 

@@ -32,18 +32,29 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await api.get("user-from-token/");
             if (response.status === 200) {
-                setUser(response.data);
+                setUser(response.data.user);
             }
         } catch (error) {
             console.error('Erreur lors de la récupération des données utilisateur:', error);
         }
     };
 
-    const logout = () => {
-        localStorage.removeItem("access");
-        localStorage.removeItem("refresh");
-        localStorage.removeItem("success");
-        setUser(null);
+    const logout = async () => {
+        try {
+            const response = await api.post("logout/");
+            if (response.status === 200) {
+                // setUser(response.data.user);
+                localStorage.removeItem("access");
+                localStorage.removeItem("refresh");
+                localStorage.removeItem("success");
+                setUser(null);
+            }else{
+                console.error('Erreur lors de la récupération des données utilisateur:', response);
+            }
+        } catch (error) {
+            console.error('Erreur lors de la récupération des données utilisateur:', error);
+        }
+
         // Ajoutez ici la logique de déconnexion (ex: supprimer le token du localStorage)
     };
 
@@ -69,6 +80,7 @@ export const AuthProvider = ({ children }) => {
         loading,
         login,
         logout,
+        setUser
     };
 
     return (

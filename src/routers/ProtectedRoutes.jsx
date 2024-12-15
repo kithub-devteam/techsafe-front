@@ -8,7 +8,7 @@ export const ProtectedRoutes = () => {
   useEffect(() => {
     if (!user) {
       // If not authenticated, redirect to the login page
-      navigate("/login");
+      navigate("/introduction");
     }
   }, [user,navigate]);
 

@@ -12,19 +12,19 @@ const Entreprise = (props) => {
             <div className="text-base font-bold mb-2 text-[#0008e2]">Informations de l'entreprise</div>
             <div className="w-full h-[40px] rounded-xl  bg-[#E3E3E3] relative">
                 <IoMdBusiness className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" />
-                <input type="text" value={props.data.entreprise} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit text-base " name="entreprise" id="entreprise" placeholder="Nom d'entreprise" />
+                <input type="text" value={props.data.entreprise} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit text-base " name="company_name" id="company_name" placeholder="Nom d'entreprise" />
             </div>
             <div className="w-full h-[40px] rounded-xl  bg-[#E3E3E3] relative">
                 <MdOutlineNumbers className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" />
-                <input type="text" value={props.data.numero} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit " name="numero" id="numero" placeholder="Numero d'Enregistrement" />
+                <input type="text" value={props.data.numero} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit " name="registration_number" id="registration_number" placeholder="Numero d'Enregistrement" />
             </div>
             <div className="w-full h-[40px] rounded-xl  bg-[#E3E3E3] relative">
                 <FaUserGroup className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" />
-                <input type="text" value={props.data.taille} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit " name="taille" id="taille" placeholder="Taille d'entreprise" />
+                <input type="text" value={props.data.taille} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit " name="company_size" id="company_size" placeholder="Taille d'entreprise" />
             </div>
             <div className="w-full h-[40px] rounded-xl  bg-[#E3E3E3] relative">
                 <MdCategory className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" />
-                <input type="text" value={props.data.secteur} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit" name="secteur" id="secteur" placeholder="Secteur d'activité" />
+                <input type="text" value={props.data.secteur} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit" name="industry" id="industry" placeholder="Secteur d'activité" />
             </div>
             <div className="w-full flex items-center justify-between">
                 <div onClick={() => props.setNextpage(false)} className="w-2/5 h-[20px] bg-[#0008e26c] m-auto text-white rounded-[15px] text-center flex items-center p-4 mt-4 justify-center cursor-pointer">

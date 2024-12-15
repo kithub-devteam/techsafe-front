@@ -15,15 +15,15 @@ const Personnel = (props) => {
             </div>
             <div className="w-full h-[40px] rounded-xl  bg-[#E3E3E3] relative">
                 <LuBriefcaseBusiness className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" />
-                <input type="text" value={props.data.poste} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit " name="poste" id="poste" placeholder="Poste occupé" />
+                <input type="text" value={props.data.poste} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit " name="position" id="position" placeholder="Poste occupé" />
             </div>
             <div className="w-full h-[40px] rounded-xl  bg-[#E3E3E3] relative">
                 <FaUserGraduate className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" />
-                <input type="text" value={props.data.specialite} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit " name="specialite" id="specialite" placeholder="Specialisation" />
+                <input type="text" value={props.data.specialite} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit " name="specialization" id="specialization" placeholder="Specialisation" />
             </div>
             <div className="w-full h-[40px] rounded-xl  bg-[#E3E3E3] relative">
                 <MdOutlineInterests className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" />
-                <input type="text" value={props.data.recherche} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit" name="recherche" id="recherche" placeholder="Centre d'interet de recherche" />
+                <input type="text" value={props.data.recherche} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit" name="research_interests" id="research_interests" placeholder="Centre d'interet de recherche" />
             </div>
             <div className="w-full flex items-center justify-between">
                 <div onClick={() => props.setNextpage(false)} className="w-2/5 h-[20px] bg-[#0008e26c] m-auto text-white rounded-[15px] text-center flex items-center p-4 mt-4 justify-center cursor-pointer">

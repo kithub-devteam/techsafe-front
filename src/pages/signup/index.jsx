@@ -7,7 +7,7 @@ import { IoMdBusiness } from "react-icons/io";
 import { GiWorld } from "react-icons/gi";
 import { BsPersonStanding } from "react-icons/bs";
 import { IoIosPerson, IoIosMail, IoIosLock, IoIosEye, IoIosEyeOff } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Entreprise from "./Entreprise"
 import MetterInput from "./MetterInput"
 import Ong from "./Ong"
@@ -16,6 +16,7 @@ import { SiMinutemailer } from "react-icons/si";
 import Verification from "./verification"
 import { GrNext } from "react-icons/gr";
 import api from "../../services/api";
+import { useAuth } from "../../Authentications"
 
 
 
@@ -29,7 +30,8 @@ const Signup = () => {
         strength: 0,
         color: "red"
     })
-
+    const navigate = useNavigate();
+const {setUser} = useAuth()
     const [data, setData] = useState({//les données de l'utilisateur
         username: "",//le username de l'utilisateur
         email: "",//l'email de l'utilisateur
@@ -37,7 +39,6 @@ const Signup = () => {
         password_confirm: "",//le mot de passe de l'utilisateur retapé
         role: "personnel",//le type de compte de l'utilisateur par defaut
         idrole: null,//l'id du role de l'utilisateur par defaut
-        additionalData: {}//les données additionnelles de l'utilisateur selon le type de compte choisi
     })
 
     const handleChange = ({ currentTarget: input }) => {//pour changer les données de l'utilisateur lors d'un changement de valeur
@@ -45,10 +46,11 @@ const Signup = () => {
     };
 
     const handleChangeAdditionalData = ({ currentTarget: input }) => {//pour changer les données additionnelles de l'utilisateur lors d'un changement de valeur
-        setData({ ...data, additionalData: { ...data.additionalData, [input.name]: input.value } });
+        setData({ ...data, [input.name]: input.value });
     };
 
     const changeAccountType = (type) => {//pour changer le type de compte de l'utilisateur
+
         setData({ ...data, role: type });
     };
 
@@ -131,13 +133,76 @@ const Signup = () => {
         }
         setLoading(true);
         try {
-            const responseRoles = await api.get("roles/");
-            console.log(responseRoles);
-            if (responseRoles.status === 200) {
-                data.idrole = responseRoles.data.find(role => role.name === data.role).id;
-                const response = await api.post("signup/", data);
-                console.log(response);
+
+            if (data.role === "personnel") {
+                const responseRoles = await api.get("available-roles/");
+                console.log(responseRoles);
+                if (responseRoles.status === 200) {
+                    let newRole = responseRoles.data.find(rolep => rolep.role === "chercheur")
+                    if (newRole) {
+                        data.idrole = newRole.id;
+                        data.role = newRole.role
+                        console.log(data, newRole)
+                        const response = await api.post("signup/", data);
+                        setUser(response.data.user)
+                        localStorage.setItem("access", response.data.access);
+                        localStorage.setItem("refresh", response.data.refresh);
+                        navigate("/");
+                        console.log(response);
+                    } else {
+                        alert("le role personnel n est disponnible pour le moment")
+                        return
+                    }
+                } else {
+                    alert("something went wrong ")
+                }
             }
+            if (data.role === "ong") {
+                const responseRoles = await api.get("available-roles/");
+                console.log(responseRoles);
+                if (responseRoles.status === 200) {
+                    let newRole = responseRoles.data.find(rolep => rolep.role === "acteur_indirect")
+                    if (newRole) {
+                        data.idrole = newRole.id;
+                        data.role = newRole.role
+                        console.log(data, newRole)
+                        const response = await api.post("signup/", data);
+                        setUser(response.data.user)
+                        localStorage.setItem("access", response.data.access);
+                        localStorage.setItem("refresh", response.data.refresh);
+                        navigate("/");
+                        console.log(response);
+                    } else {
+                        alert("le role ONG n est disponnible pour le moment ")
+                        return
+                    }
+                } else {
+                    alert("something went wrong ")
+                }
+            }
+            if (data.role === "entreprise") {
+                const responseRoles = await api.get("available-roles/");
+                console.log(responseRoles);
+                if (responseRoles.status === 200) {
+                    let newRole = responseRoles.data.find(rolea => rolea.role === "acteur_direct")
+                    if (newRole) {
+                        data.idrole = newRole.id;
+                        data.role = newRole.role
+                        const response= await api.post("signup/", data);
+                        setUser(response.data.user)
+                        localStorage.setItem("access", response.data.access);
+                        localStorage.setItem("refresh", response.data.refresh);
+                        navigate("/");
+                        console.log(response);
+                    } else {
+                        alert("le role entreprise n est disponnible pour le moment")
+                        return
+                    }
+                } else {
+                    alert("something went wrong ")
+                }
+            }
+
         } catch (error) {
             console.log(error);
         } finally {

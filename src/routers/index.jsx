@@ -16,13 +16,13 @@ const Home = React.lazy(() => import("../pages/home"));
 const Login = React.lazy(() => import("../pages/login"));
 const Signup = React.lazy(() => import("../pages/signup"));
 const Conversations = React.lazy(() => import("../pages/conversations/index"));
-
+const Introduction = React.lazy(()=>import("../pages/introduction"))
 const Routes = () => {
   const { user, loading } = useAuth()
-  const [token, setToken] = useState(null)
+  const [connectedUser, setconnectedUser] = useState(null)
 
   useEffect(() => {
-    setToken(!!user)
+    setconnectedUser(!!user)
   }, [user, loading])
   if (loading) {
     return <div>Loading...</div>;
@@ -32,6 +32,14 @@ const Routes = () => {
     {
       path: "/service",
       element: <div>Service Page</div>,
+    },
+    {
+      path: "/introduction",
+      element: (
+        <Suspense fallback={<div>Loading.......</div>}>
+          <Introduction/>
+        </Suspense>
+      ),
     },
     {
       path: "/about-us",
@@ -102,7 +110,7 @@ const Routes = () => {
 
   const router = createBrowserRouter([
     ...PublicRoutes,
-    ...(!token ? UnauthenticatedRoutes : []),
+    ...(!connectedUser ? UnauthenticatedRoutes : []),
     ...AuthenticatedRoutes,
   ]);
 

@@ -28,7 +28,7 @@ api.interceptors.response.use(response => {
   return response;
 }, error => {
   // Gestion des erreurs de réponse
-  console.error("Une erreur s'est produite :", error.response);
+  console.error("Une erreur s'est produite :", error);
   return Promise.reject(error);
 });
 

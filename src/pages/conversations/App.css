@@ -1,24 +1,23 @@
 /* Conteneur principal */
 .app-container {
     display: flex; /* Utilise Flexbox pour l'alignement */
-    max-width: 1200px; /* Largeur maximale */
-    max-height: 800px; /* Hauteur maximale pour le conteneur principal */
-    margin: 0 auto; /* Centrer dans la page */
+    width: 100%; /* Largeur maximale */
+    margin: 4rem auto; /* Centrer dans la page */
     padding: 20px;
-    background-color: #f9f9f9; /* Couleur de fond */
     overflow: hidden; /* Cache le débordement */
 }
 
-/* Sidebar */
 .sidebar {
-    display: flex; /* Utilise Flexbox pour l'alignement */
-    flex-direction: column; /* Aligne les éléments en colonne */
-    justify-content: space-between; /* Espace entre les éléments pour pousser le footer en bas */
-    flex: 1; /* Prend une partie de l'espace */
-    background-color: #ffffff; /* Couleur de fond de la sidebar */
+    display: flex; /* Utilise Flexbox pour l'alignement vertical */
+    flex-direction: column; /* Place les enfants en colonne */
+    flex: 1; /* Prend tout l'espace disponible */
     padding: 10px; /* Espacement interne */
-    border-right: 0.2px solid #ccc; /* Ligne droite à droite de la sidebar */
-}
+    border-right: 0.2px solid #ccc; /* Ligne à droite */
+    position: relative; /* Définit un contexte de position pour les éléments absolus */
+    height: 80vh; /* Assure que la sidebar occupe toute la hauteur de l'écran */
+    box-shadow: 0 2px 8px #0000001a; /* Ombre légère */
+
+  }
 
 /* Logo section */
 .logo-section {
@@ -65,18 +64,38 @@
 
 .options {
     display: flex;
+    padding: 10px;
     flex-direction: column;
     align-items: center;
-    margin-top: -100px; /* Augmenté de -40px à -100px pour monter vers le titre */
     width: 100%;
+    top: -100px;
 }
+
+  
+.sidebar-footer {
+    position: absolute; /* Positionnement absolu */
+    bottom: 0; /* Fixé en bas du conteneur parent */
+    left: 0; /* Aligne à gauche */
+    width: 100%; /* Prend toute la largeur de la sidebar */
+    padding: 10px; /* Espacement interne */
+    text-align: center; /* Centre le contenu horizontalement */
+    font-size: 14px; /* Taille de la police */
+    color: #0c0c0c; /* Couleur du texte */
+  }
+
+
+  
+
 
 /* Responsivité */
 @media (max-width: 1010px) {
     .sidebar {
         display: flex;
+        flex: 1;
+        width: 20%;
         flex-direction: column;
-        height: 30vh;
+        height: 80vh;
+
     }
 
     .logo-section {
@@ -84,22 +103,53 @@
         flex-direction: column;
         align-items: center;
     }
+    
 
-    .welcome-header {
-        text-align: center;
-        margin-bottom: 20px;
-    }
+/*  =======================================================================*/
 
-    .sidebar-text {
-        display: none; /* Cache le texte en mode responsive */
-    }
+.logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  
+  .logo-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .logo-container img:first-child {
+    position: absolute;
+    left: 0;
+  }
+  
+  .logo-container img:last-child {
+    position: absolute;
+    right: 0;
+  }
+  
+  .welcome-header {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
 
-    .options {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
+
+
+  .sidebar-footer {
+    font-size: 0.77rem !important; /* Force la priorité */
+    margin-top: -4rem;
+    text-align: left;
+  }
+
+
+/*  =======================================================================*/
+ 
+
 
     .menu-button {
         display: block;
@@ -132,14 +182,6 @@
     }
 }
 
-/* Options */
-.options {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: -140px; /* Augmenté de -40px à -100px pour monter vers le titre */
-    width: 100%;
-}
 
 /* Ajuster le conteneur des boutons */
 .button-container {
@@ -166,14 +208,16 @@
 
 /* Chat Section */
 .chat-container {
-    flex: 2; /* Prend plus d'espace que la sidebar */
+    flex: 2; /* Prend tout l'espace disponible */
+    flex-direction: column; /* Place les enfants en colonne */
     background-color: #ffffff; /* Couleur de fond du chat */
-    border-radius: 10px; /* Coins arrondis */
-    padding: 20px; /* Espacement interne */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
-    max-height: 600px; /* Hauteur maximale pour le conteneur de chat */
+    padding: 10px; /* Espacement interne */
+    box-shadow: 0 2px 8px #0000001a; /* Ombre légère */
     overflow-y: auto; /* Permet le défilement si le contenu déborde */
+    position: relative; /* Définit un contexte de position pour les éléments absolus */
+    height: 80vh; /* Assure que la sidebar occupe toute la hauteur de l'écran */
 }
+
 
 /* Autres styles pour le chat */
 .chat-header {
@@ -200,11 +244,6 @@
     overflow-y: auto; /* Permet le défilement si le contenu déborde */
 }
 
-.chat-footer {
-    display: flex; /* Utilise Flexbox pour le footer */
-    align-items: center; /* Aligne les éléments verticalement */
-    margin-top: 20px; /* Espacement en haut */
-}
 
 .message-input {
     flex: 1; /* Prend tout l'espace disponible */
@@ -290,6 +329,7 @@
     line-clamp: 3;
     transition: all 0.3s ease;
     margin: 0;
+    bottom: 0;
     }
 
 /* Style pour le conteneur du h2 et du p */
@@ -332,6 +372,11 @@
     background-color: #ffffff;
     min-height: 300px;
 }
+.bot-message {
+    height: 100%;
+    padding-left: 10px;
+    margin-top: 8rem;
+}
 
 .bot-message {
     display: flex;
@@ -347,8 +392,14 @@
 }
 
 .input-container {
-    position: relative; /* Nécessaire pour positionner le bouton à l'intérieur de l'input */
-    width: 100%; /* Prend toute la largeur disponible */
+    position: absolute; /* Positionnement absolu */
+    bottom: 0; /* Fixé en bas du conteneur parent */
+    left: 0; /* Aligne à gauche */
+    width: 100%; /* Prend toute la largeur de la sidebar */
+    padding: 10px; /* Espacement interne */
+    text-align: center; /* Centre le contenu horizontalement */
+    font-size: 14px; /* Taille de la police */
+    color: #0c0c0c; /* Couleur du texte */
 }
 
 .message-input {
@@ -486,6 +537,8 @@
     -webkit-line-clamp: 2; /* Limite à 2 lignes */
     -webkit-box-orient: vertical; /* Définit l'orientation de la boîte */
     line-clamp: 2; /* Ajout de la propriété standard */
+    border-radius: 10px;
+    padding: 10px;
 }
 
 /* Styles pour le bouton "Voir plus" */
@@ -495,6 +548,7 @@
     margin-top: 5px; /* Espacement au-dessus */
     font-size: 12px; /* Taille de la police */
     display: none; /* Masque par défaut */
+    margin-bottom: 20px; /* Espacement au-dessus */
 }
 
 /* Affiche le bouton "Voir plus" lorsque le message est réduit */
@@ -514,12 +568,10 @@
 /* Responsivité */
 @media (max-width: 1010px) {
     .header-title {
-        display: none; /* Cache le titre h2 en mode responsive */
-    }
-
-    .text-date {
-        display: none;
-        
+        width: 100%;
+        display: flex; /* Cache le titre h2 en mode responsive */
+        font-size: 0.55rem;
+        border-radius: 10px;
     }
 
     .doctor-image {
@@ -594,6 +646,276 @@
     .see-more.hidden {
         display: none;
     }
+}
+
+@media (max-width: 768px){
+
+    .app-container {
+        width: 100%; /* Largeur maximale */
+        margin: 1rem auto; /* Centrer dans la page */
+        padding: 20px;
+        background-color: #f9f9f9; /* Couleur de fond */
+        overflow: hidden; /* Cache le débordement */
+        display: flex;
+        flex: 1;
+        padding-top: 0;
+        flex-direction: column;
+    }
+
+    .sidebar {
+        display: flex; /* Utilise Flexbox pour l'alignement */
+        flex-direction: column; /* Aligne les éléments en colonne */
+        justify-content: space-between; /* Espace entre les éléments pour pousser le footer en bas */
+        height: 100vh; /* Hauteur de la fenêtre */
+        width: 80%; /* Largeur de la sidebar */
+    }
+
+    .sidebar-footer {
+        position: absolute;
+        display: flex; /* Utilise Flexbox pour l'alignement */
+        flex: 1;
+        width: 80%; /* Largeur de la sidebar */
+        bottom:0;
+    }
+    
+    .logo-section {
+        display: flex; /* Utilise flexbox pour aligner les éléments */
+        align-items: center; /* Centre verticalement les éléments */
+        justify-content: space-between; /* Espace entre les logos et le titre */
+        padding: 10px; /* Espacement interne */
+    }
+    
+    .logo-container {
+        display: flex; /* Utilise flexbox pour les logos */
+        flex: 1; /* Prend tout l'espace disponible */
+        justify-content: flex-start; /* Aligne le premier logo à gauche */
+    }
+    
+    .welcome-header {
+        display: flex; /* Utilise flexbox pour le titre */
+        flex: 1; /* Prend tout l'espace disponible */
+        justify-content: center; /* Centre le titre horizontalement */
+        flex-direction: column; /* Aligne le titre et la ligne de soulignement en colonne */
+    }
+    
+    .title-underline {
+        width: 100%; /* Prend toute la largeur du conteneur */
+        border: 1px solid #ddd; /* Style de la ligne */
+        margin-top: 5px; /* Espacement au-dessus de la ligne */
+    }
+    
+    .welcome-header h1 {
+        color: #050342; /* Couleur du titre */
+        margin: 0; /* Supprime le margin par défaut */
+    }
+    
+    /* Styles pour le footer */
+    .sidebar-footer {
+        margin-top: auto; /* Pousse le footer vers le bas */
+        background-color: #f9f9f9; /* Couleur de fond du footer */
+        text-align: center; /* Centre le texte dans le footer */
+    }
+
+
+    .options{
+        display: none;
+    }
+
+    a {
+        text-decoration: underline; /* Souligner tous les liens */
+      }
+
+    /*  =======================================================================*/
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  
+  .logo-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .logo-container img:first-child {
+    position: absolute;
+    left: 0; 
+    width: 20%;
+  }
+  
+  .logo-container img:last-child {
+    position: absolute;
+    right: 0;
+    width: 20%;
+  }
+  
+  .welcome-header {
+    position: absolute;
+    left: 47%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+
+  .sidebar-footer {
+    font-size: 0.77rem !important; /* Force la priorité */
+    margin-top: -1.5rem;
+    text-align: center;
+  }
+
+  .sidebar-footer a{
+    width: 100%;
+    display: left;
+    font-size: 0.55rem;
+
+  }
+
+    /*  =======================================================================*/
+   /* Conteneur principal de l'en-tête */
+.chat-header {
+    display: flex;
+    flex: 2;
+    flex-direction: row;
+    justify-content: space-between; /* Espace entre les éléments */
+    background-color: #ECECF1; /* Fond gris clair */
+    width: 100%; /* Largeur pleine */
+    height: 70px; /* Hauteur de 50px */
+    padding: 0 10px; /* Espacement interne horizontal */
+  }
+  
+  /* Conteneur interne de l'en-tête */
+  .header-content {
+    display: flex;
+    justify-content: space-between; /* Espace entre le texte, la date et l'image du docteur */
+    width: 100%;
+    height: 100%; /* Hauteur de 100% du parent */
+  }
+  
+  /* Conteneur texte et date */
+  .text-date {
+    flex-direction: column;
+    justify-content: space-between;
+    color: #050342; /* Couleur du texte */
+    width: 100%; /* 60% de la largeur pour texte et date */
+    height: 100%; /* Hauteur de 100% */
+    padding-right: 10px; /* Espacement entre le texte et l'image */
+    box-sizing: border-box;
+    display: left;
+  }
+  
+  /* Titre */
+  .text-date h2 {
+    font-weight: bold;
+    margin: 0;
+    font-size: 0.55rem; /* Taille de texte relative */
+    align-self: flex-start; /* Positionner le titre en haut */
+    flex: 1; /* Prendre toute la hauteur disponible */
+    line-height: 1.2; /* Ajuster l'espacement entre les lignes */
+  }
+  
+  /* Date */
+  .text-date p {
+    margin: 0;
+    align-self: flex-end; /* Positionner la date en bas */
+    font-size: 0.9rem; /* Taille de texte relative */
+    line-height: 1.2; /* Ajuster l'espacement entre les lignes */
+    font-size: 0.55rem;
+    
+  }
+
+  .header-date{
+    top: -20px;
+    width: 100%;
+    display: flex;
+  }
+  
+  /* Image du chatbot */
+  .chatbot2 {
+    width: 40px; /* Taille de l'image du chatbot */
+    height: 40px;
+    border-radius: 50%;
+    align-self: flex-start; /* Positionner l'image en haut à droite */
+  }
+  
+  /* Image du docteur */
+  .doctor-image {
+    width: 40px; /* Taille de l'image du docteur */
+    height: 40px;
+    border-radius: 50%; /* Pour un affichage rond */
+    align-self: flex-start; /* Positionner l'image en haut à droite */
+  }
+
+  .chat-container {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: none;
+  }
+      
+    
+    /* Styles pour mobile */
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 100%; /* Prend toute la largeur sur mobile */
+        }
+        
+        .logo-section {
+            flex-direction: row; /* Aligne les éléments en ligne */
+        }
+        
+        .welcome-header {
+            margin: 0 10px; /* Espacement pour le titre */
+        }
+
+
+        /* CSS pour le comportement sur les écrans de 768px ou moins */
+@media (max-width: 768px) {
+    .message-text-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      height: 100%; /* S'assurer que le conteneur prend toute la hauteur disponible */
+    }
+  
+    .sidebar-text {
+      font-size: 0.77px;
+      text-align: center; /* Centrer le titre */
+      margin-bottom: 15px; /* Espacement sous le titre */
+    }
+  
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%; /* Largeur pleine pour les boutons */
+      margin-top: 15px; /* Espacement au-dessus des boutons */
+    }
+  
+    .button-container button {
+      width: 80%; /* Largeur des boutons réduite pour mieux s'adapter */
+      margin-bottom: 10px; /* Espacement entre les boutons */
+      padding: 10px;
+      background-color: #f0f0f0;
+      color: black;
+      border: 1px solid black;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+  
+    /* Lorsque les boutons sont affichés */
+    .button-container.show-buttons button {
+      display: block; /* S'assurer que les boutons sont visibles */
+    }
+  }
+  
+        
+    }
+    
 }
   
   

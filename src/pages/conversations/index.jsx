@@ -56,8 +56,11 @@ function App() {
           </div>
         </div>
         
-        <div className="options"> {/* Section des options */}
-          <p className="sidebar-text">Que voulez-vous apprendre aujourd'hui ?</p> {/* Invite à l'utilisateur */}
+        <div className="options"> {/* Section des options*/}
+          <p className="sidebar-text" style={{ fontSize: '10px' }}>
+            Que voulez-vous apprendre aujourd'hui ?
+          </p>
+
           <button className="menu-button" onClick={toggleButtons}>
             {showButtons ? "Cacher les options" : "Afficher les options"}
           </button>
@@ -84,10 +87,10 @@ function App() {
         </div>
         
         <footer className="sidebar-footer"> {/* Section de pied de page de la barre latérale */}
-          <p>
+          <a href="#">
             <i className="fas fa-history" style={{ color: '#050342', marginRight: '8px' }}></i> {/* Icône pour l'historique */}
             Historique des dernières conversations {/* Texte pour l'historique des conversations */}
-          </p>
+          </a>
         </footer>
       </header>
 

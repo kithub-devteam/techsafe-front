@@ -39,7 +39,7 @@ const Introduction = () => {
               </div>
             </div>
             <div className="w-1/5 flex justify-between items-center">
-              <Link to={"/conversations"} className="w-20 cursor-pointer ">
+              <Link to={"/conversations"} className="w-[4rem] cursor-pointer ">
                 {" "}
                 <img src={chatbot1} alt="robot" />
               </Link>
@@ -53,7 +53,7 @@ const Introduction = () => {
               ) : (
                 <Link
                   to={"/"}
-                  className="bg-[#4D54FE] text-white font-bold py-2 px-3 cursor-pointer "
+                  className="bg-[#4D54FE] rounded-md text-white font-bold py-2 px-3 cursor-pointer "
                 >
                   {user.username}
                 </Link>
@@ -68,11 +68,53 @@ const Introduction = () => {
         </div>
         {/* ===================start popup drawer=========================== */}
         {openModal && (
-          <div className="fixed z-10 filter   bg-gray-400 top-0 left-0 h-screen w-full md:hidden">
-            <MdMenu
-              className="text-4xl md:hidden"
-              onClick={() => setopenModal(false)}
-            />
+          <div className="fixed z-10 filter bg-white top-0 left-0 h-screen w-full md:hidden">
+            <div className="w-full h-[4rem] flex items-center justify-between px-4">
+              <MdMenu
+                className="text-4xl md:hidden"
+                onClick={() => setopenModal(false)}
+              />
+              <div className="w-[150px] flex justify-end items-center ">
+                {!user ? (
+                  <Link
+                    to={"/login"}
+                    className="bg-[#4D54FE] text-white font-bold py-2 px-3 rounded-md ursor-pointer "
+                  >
+                    Connexion
+                  </Link>
+                ) : (
+                  <Link
+                    to={"/"}
+                    className="bg-[#4D54FE] text-white font-bold py-2 px-3 rounded-md cursor-pointer "
+                  >
+                    {user.username}
+                  </Link>
+                )}
+              </div>
+
+            </div>
+
+            <div className="w-full mr-auto py-20 px-4 ">
+              <div className="bg-[#E8F9F3] text-[#4D54FE] px-3 py-4 my-1 rounded-md">
+              <Link to={"/introduction"}>  Acceill</Link>   
+              </div>
+              <div className="bg-[#E8F9F3] px-3 py-4 my-1 rounded-md   ">
+                A propos
+              </div>
+              <div className="bg-[#E8F9F3] px-3 py-4 my-1 rounded-md   ">
+                Activite
+              </div>
+              <div className="bg-[#E8F9F3] px-3 py-4 my-1 rounded-md   ">
+                Recherches
+              </div>
+              <div className="bg-[#E8F9F3] px-3 py-4 my-1 rounded-md   ">
+                Contact
+              </div>
+              <div className="bg-[#E8F9F3] px-3 py-4 my-1 rounded-md   ">
+              <Link to={"/conversations"}>  Discuter un bot</Link> 
+                
+              </div>
+            </div>
           </div>
         )}
 

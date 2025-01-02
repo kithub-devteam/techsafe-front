@@ -29,7 +29,7 @@ const Introduction = () => {
           <div className=" hidden md:flex  h-full justify-between items-center md:w-[92%]">
             <div className="w-4/5">
               <div className="w-4/5 m-auto flex items-center justify-between rounded-[30px] py-3 px-4 bg-[#E8F9F3]">
-                <div className="text-sm text-[#4D54FE] font-bold border-b border-b-[#4D54FE] ">
+                <div className="text-sm text-green-400 font-bold border-b border-b-green-400 ">
                   Acceuil
                 </div>
                 <div className="text-sm">A propos</div>
@@ -46,14 +46,14 @@ const Introduction = () => {
               {!user ? (
                 <Link
                   to={"/login"}
-                  className="bg-[#4D54FE] text-white font-bold py-2 px-3 rounded-[30px] cursor-pointer "
+                  className="bg-green-400 text-white font-bold py-2 px-3 rounded-[30px] cursor-pointer "
                 >
                   Connexion
                 </Link>
               ) : (
                 <Link
                   to={"/"}
-                  className="bg-[#4D54FE] rounded-md text-white font-bold py-2 px-3 cursor-pointer "
+                  className="bg-green-400 rounded-md text-white font-bold py-2 px-3 cursor-pointer "
                 >
                   {user.username}
                 </Link>
@@ -78,14 +78,14 @@ const Introduction = () => {
                 {!user ? (
                   <Link
                     to={"/login"}
-                    className="bg-[#4D54FE] text-white font-bold py-2 px-3 rounded-md ursor-pointer "
+                    className="bg-green-400 text-white font-bold py-2 px-3 rounded-md ursor-pointer "
                   >
                     Connexion
                   </Link>
                 ) : (
                   <Link
                     to={"/"}
-                    className="bg-[#4D54FE] text-white font-bold py-2 px-3 rounded-md cursor-pointer "
+                    className="bg-green-400 text-white font-bold py-2 px-3 rounded-md cursor-pointer "
                   >
                     {user.username}
                   </Link>
@@ -130,7 +130,7 @@ const Introduction = () => {
           </div>
         </div>
         <div>Bâtissons un monde sain et sécure pour notre communauté</div>
-        <div className="bg-[#4D54FE] w-max text-white font-bold py-2 px-3 rounded-[30px] cursor-pointer mt-2 ">
+        <div className="bg-green-400 w-max text-white font-bold py-2 px-3 rounded-[30px] cursor-pointer mt-2 ">
           Découvrir notre mission
         </div>
 
@@ -149,7 +149,7 @@ const Introduction = () => {
                 <div className="font-bold text-sm text-black border-b-2 border-black">
                   Forums
                 </div>
-                <div className="w-[20px] h-[20px] rounded-full bg-[#4D54FE] text-white flex justify-center items-center">
+                <div className="w-[20px] h-[20px] rounded-full bg-green-400 text-white flex justify-center items-center">
                   <MdOutlineArrowOutward />
                 </div>
               </div>
@@ -173,7 +173,7 @@ const Introduction = () => {
                 <div className="font-bold text-sm text-black border-b-2 border-black">
                   Evènements
                 </div>
-                <div className="w-[20px] h-[20px] rounded-full bg-[#4D54FE] text-white flex justify-center items-center">
+                <div className="w-[20px] h-[20px] rounded-full bg-green-400 text-white flex justify-center items-center">
                   <MdOutlineArrowOutward />
                 </div>
               </div>
@@ -191,7 +191,7 @@ const Introduction = () => {
                 <div className="font-bold text-sm text-black border-b-2 border-black">
                   Voir plus
                 </div>
-                <div className="w-[20px] h-[20px] rounded-full bg-[#4D54FE] text-white flex justify-center items-center">
+                <div className="w-[20px] h-[20px] rounded-full bg-green-400 text-white flex justify-center items-center">
                   <MdOutlineArrowOutward />
                 </div>
               </div>
@@ -204,7 +204,7 @@ const Introduction = () => {
 
                 <Link
                   to={"/converisations"}
-                  className="bg-[#4D54FE] text-white font-bold py-2 px-3 rounded-[30px] cursor-pointer "
+                  className="bg-green-400 text-white font-bold py-2 px-3 rounded-[30px] cursor-pointer "
                 >
                   Discuter avec notre chatbot
                 </Link>
@@ -224,7 +224,7 @@ const Introduction = () => {
                 <div className="font-bold text-sm text-black border-b-2 border-black">
                   Ressources
                 </div>
-                <div className="w-[20px] h-[20px] rounded-full bg-[#4D54FE] text-white flex justify-center items-center">
+                <div className="w-[20px] h-[20px] rounded-full bg-green-400 text-white flex justify-center items-center">
                   <MdOutlineArrowOutward />
                 </div>
               </div>
@@ -248,7 +248,7 @@ const Introduction = () => {
                 <div className="font-bold text-sm text-black border-b-2 border-black">
                   Explorez les témoignages
                 </div>
-                <div className="w-[20px] h-[20px] rounded-full bg-[#4D54FE] text-white flex justify-center items-center">
+                <div className="w-[20px] h-[20px] rounded-full bg-green-400 text-white flex justify-center items-center">
                   <MdOutlineArrowOutward />
                 </div>
               </div>

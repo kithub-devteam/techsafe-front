@@ -223,7 +223,7 @@ const {setUser} = useAuth()
                             <div className="text-[#606060] text-[16px] text-center font-sans  pb-5 pt-5">Sauvons des vies grace a la technologie</div>
                         </div>
                         <div className="w-full flex items-end justify-center">
-                            <Link to="/login" className="w-1/2 h-[20px] bg-[#0008e26c] text-white rounded-[15px] text-center flex items-center p-4 justify-center cursor-pointer">
+                            <Link to="/login" className="w-1/2 h-[20px] bg-green-400 text-white rounded-[15px] text-center flex items-center p-4 justify-center cursor-pointer">
                                 Se connecter
                             </Link>
                         </div>
@@ -309,7 +309,7 @@ const {setUser} = useAuth()
                                         <IoIosLock className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" />
                                         <input type="password" onChange={handleChange} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit" name="password_confirm" value={data.password_confirm} id="password_confirm" placeholder="Retapez le mot de passe" />
                                     </div>
-                                    <div onClick={() => setNextpage(true)} className="w-1/2 h-[20px] bg-[#0008e26c] m-auto text-white rounded-[15px] text-center flex items-center p-4 mt-4 justify-center cursor-pointer">
+                                    <div onClick={() => setNextpage(true)} className="w-1/2 h-[20px] bg-green-400 m-auto text-white rounded-[15px] text-center flex items-center p-4 mt-4 justify-center cursor-pointer">
                                         Continue <GrNext className="text-sm" />
                                     </div>
                                     <Verification verification={verification} setVerification={setVerification} />

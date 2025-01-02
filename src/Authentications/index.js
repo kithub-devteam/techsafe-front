@@ -6,6 +6,7 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [loadingLoagout, setloadingLoagout] = useState(false);
 
     const login = async (credentials = "") => {
         try {
@@ -40,6 +41,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = async () => {
+        setloadingLoagout(true);
         try {
             const response = await api.post("auth/logout/");
             if (response.status === 200) {
@@ -48,11 +50,14 @@ export const AuthProvider = ({ children }) => {
                 localStorage.removeItem("refresh");
                 localStorage.removeItem("success");
                 setUser(null);
+                setloadingLoagout(false);
             }else{
                 console.error('Erreur lors de la récupération des données utilisateur:', response);
+                setloadingLoagout(false);
             }
         } catch (error) {
             console.error('Erreur lors de la récupération des données utilisateur:', error);
+            setloadingLoagout(false);
         }
 
         // Ajoutez ici la logique de déconnexion (ex: supprimer le token du localStorage)
@@ -80,7 +85,8 @@ export const AuthProvider = ({ children }) => {
         loading,
         login,
         logout,
-        setUser
+        setUser,
+        loadingLoagout
     };
 
     return (

@@ -27,10 +27,10 @@ const Entreprise = (props) => {
                 <input type="text" value={props.data.secteur} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit" name="industry" id="industry" placeholder="Secteur d'activité" />
             </div>
             <div className="w-full flex items-center justify-between">
-                <div onClick={() => props.setNextpage(false)} className="w-2/5 h-[20px] bg-[#0008e26c] m-auto text-white rounded-[15px] text-center flex items-center p-4 mt-4 justify-center cursor-pointer">
+                <div onClick={() => props.setNextpage(false)} className="w-2/5 h-[20px] bg-green-400 m-auto text-white rounded-[15px] text-center flex items-center p-4 mt-4 justify-center cursor-pointer">
                     <GrPrevious className="text-sm" /> Precedent
                 </div>
-                <div onClick={props.handleSubmit}  className={`w-2/5 h-[20px] ${props.loading ? 'bg-gray-400' : 'bg-[#0008e26c]'} m-auto text-white rounded-[15px] text-center flex items-center p-4 mt-4 justify-center cursor-pointer`}>
+                <div onClick={props.handleSubmit}  className={`w-2/5 h-[20px] ${props.loading ? 'bg-gray-400' : 'bg-green-400'} m-auto text-white rounded-[15px] text-center flex items-center p-4 mt-4 justify-center cursor-pointer`}>
                     {props.loading ? <div className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status"></div> : <div> {'Valider'} </div>}
                 </div>
             </div>

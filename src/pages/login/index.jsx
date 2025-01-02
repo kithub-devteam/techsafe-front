@@ -90,7 +90,7 @@ const Login = () => {
             <div className="w-full flex items-end justify-center">
               <Link
                 to="/signup"
-                className="w-2/3 h-[20px] bg-[#0008e26c] text-white rounded-[15px] text-center flex items-center p-4 justify-center cursor-pointer"
+                className="w-2/3 h-[20px] bg-green-400 text-white rounded-[15px] text-center flex items-center p-4 justify-center cursor-pointer"
               >
                 creer un compte
               </Link>
@@ -166,12 +166,15 @@ const Login = () => {
               <div
                 onClick={handleSubmit}
                 className={`w-full h-[40px] ${
-                  loading ? "bg-gray-400" : "bg-[#0008e26c]"
-                } text-white rounded-[15px] text-center flex items-center p-4 mt-4 justify-center cursor-pointer`}
+                    loading ? "bg-[#F29339]" : "bg-green-400"
+                } text-white rounded-[15px] text-center flex items-center 
+                p-4 mt-4 justify-center cursor-pointer`}
               >
                 {loading ? (
                   <div
-                    className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                    className="inline-block h-4 w-4 animate-spin rounded-full 
+                    border-2 border-solid border-current border-e-transparent align-[-0.125em]
+                     motion-reduce:animate-[spin_1.5s_linear_infinite]"
                     role="status"
                   ></div>
                 ) : (

@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (credentials = "") => {
         try {
-            const response = await api.post("login/", {
+            const response = await api.post("auth/login/", {
                 login: credentials.identifier,
                 password: credentials.password
             });
@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
                 localStorage.setItem("access", response.data.access);
                 localStorage.setItem("refresh", response.data.refresh);
                 await fetchUserData();
-                setUser(response.data.user);
+                // setUser(response.data.user);
                 return true;
             }
             return false;
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
     const fetchUserData = async () => {
         try {
-            const response = await api.get("user-from-token/");
+            const response = await api.get("auth/user-from-token/");
             if (response.status === 200) {
                 setUser(response.data.user);
             }
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            const response = await api.post("logout/");
+            const response = await api.post("auth/logout/");
             if (response.status === 200) {
                 // setUser(response.data.user);
                 localStorage.removeItem("access");

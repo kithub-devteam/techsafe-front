@@ -16,7 +16,7 @@ const Ong = (props) => {
             </div>
             <div className="w-full h-[40px] rounded-xl  bg-[#E3E3E3] relative">
                 <MdOutlineNumbers className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" />
-                <input type="text" value={props.data.numero} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit " name="organization_id" id="organization_id" placeholder="Numero d'Enregistrement" />
+                <input type="text" value={props.data.numero} onChange={props.handleChangeAdditionalData} className="w-full pl-10 rounded-xl h-full border-0 outline-0 bg-inherit " name="registration_id" id="registration_id" placeholder="Numero d'Enregistrement" />
             </div>
             <div className="w-full h-[40px] rounded-xl  bg-[#E3E3E3] relative">
                 <MdCategory className="text-[#606060] text-2xl absolute left-2 top-1/2 -translate-y-1/2" />

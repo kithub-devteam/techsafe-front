@@ -135,7 +135,7 @@ const {setUser} = useAuth()
         try {
 
             if (data.role === "personnel") {
-                const responseRoles = await api.get("available-roles/");
+                const responseRoles = await api.get("auth/available-roles/");
                 console.log(responseRoles);
                 if (responseRoles.status === 200) {
                     let newRole = responseRoles.data.find(rolep => rolep.role === "chercheur")
@@ -143,7 +143,7 @@ const {setUser} = useAuth()
                         data.idrole = newRole.id;
                         data.role = newRole.role
                         console.log(data, newRole)
-                        const response = await api.post("signup/", data);
+                        const response = await api.post("auth/signup/", data);
                         setUser(response.data.user)
                         localStorage.setItem("access", response.data.access);
                         localStorage.setItem("refresh", response.data.refresh);
@@ -158,7 +158,7 @@ const {setUser} = useAuth()
                 }
             }
             if (data.role === "ong") {
-                const responseRoles = await api.get("available-roles/");
+                const responseRoles = await api.get("auth/available-roles/");
                 console.log(responseRoles);
                 if (responseRoles.status === 200) {
                     let newRole = responseRoles.data.find(rolep => rolep.role === "acteur_indirect")
@@ -166,7 +166,7 @@ const {setUser} = useAuth()
                         data.idrole = newRole.id;
                         data.role = newRole.role
                         console.log(data, newRole)
-                        const response = await api.post("signup/", data);
+                        const response = await api.post("auth/signup/", data);
                         setUser(response.data.user)
                         localStorage.setItem("access", response.data.access);
                         localStorage.setItem("refresh", response.data.refresh);
@@ -181,14 +181,14 @@ const {setUser} = useAuth()
                 }
             }
             if (data.role === "entreprise") {
-                const responseRoles = await api.get("available-roles/");
+                const responseRoles = await api.get("auth/available-roles/");
                 console.log(responseRoles);
                 if (responseRoles.status === 200) {
                     let newRole = responseRoles.data.find(rolea => rolea.role === "acteur_direct")
                     if (newRole) {
                         data.idrole = newRole.id;
                         data.role = newRole.role
-                        const response= await api.post("signup/", data);
+                        const response= await api.post("auth/signup/", data);
                         setUser(response.data.user)
                         localStorage.setItem("access", response.data.access);
                         localStorage.setItem("refresh", response.data.refresh);

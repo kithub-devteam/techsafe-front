@@ -38,8 +38,10 @@ const Login = () => {
             if (!result) {
                 setError("Identifiant ou mot de passe incorrect");
             }
+            setLoading(false);
         } catch (e) {
             setError('Une erreur est survenue lors de la connexion');
+            setLoading(false);
         } finally {
             setLoading(false);
         }

@@ -64,26 +64,6 @@ function App() {
           <button className="menu-button" onClick={toggleButtons}>
             {showButtons ? "Cacher les options" : "Afficher les options"}
           </button>
-          <div className={`button-container ${showButtons ? 'show-buttons' : ''}`}> {/* Conteneur pour les boutons */}
-            {["Santé", "Droits", "Violence", "Soutien", "Sécurité"].map((buttonName) => (
-              <button
-                key={buttonName}
-                onClick={() => handleButtonClick(buttonName)} // Gère le clic sur le bouton
-                style={{
-                  backgroundColor: selectedButton === buttonName ? '#5DC759' : '#f0f0f0', // Change le fond si le bouton est sélectionné
-                  color: selectedButton === buttonName ? 'white' : 'black', // Change la couleur du texte si le bouton est sélectionné
-                  margin: '5px', // Espacement entre les boutons
-                  border: '1px solid black', // Bordure par défaut
-                  padding: '10px', // Espacement interne
-                  cursor: 'pointer', // Change le curseur au survol
-                  borderRadius: '25px', // Coins arrondis
-                  transition: 'background-color 0.3s', // Transition douce pour le changement de couleur
-                }}
-              >
-                {buttonName} {/* Affiche le nom du bouton */}
-              </button>
-            ))}
-          </div>
         </div>
         
         <footer className="sidebar-footer"> {/* Section de pied de page de la barre latérale */}

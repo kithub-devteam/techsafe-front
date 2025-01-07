@@ -1,61 +1,52 @@
 /* Conteneur principal */
 .app-container {
-    display: flex; /* Utilise Flexbox pour l'alignement */
-    width: 100%; /* Largeur maximale */
-    margin: 4rem auto; /* Centrer dans la page */
-    padding: 20px;
-    overflow: hidden; /* Cache le débordement */
+  display: flex;
+  width: 100%;
+  /* margin: 4rem auto; */
+  /* padding: 20px; */
+  overflow: hidden;
+  height: 100%;
 }
 
 .sidebar {
-    display: flex; /* Utilise Flexbox pour l'alignement vertical */
-    flex-direction: column; /* Place les enfants en colonne */
-    flex: 1; /* Prend tout l'espace disponible */
-    padding: 10px; /* Espacement interne */
-    border-right: 0.2px solid #ccc; /* Ligne à droite */
-    position: relative; /* Définit un contexte de position pour les éléments absolus */
-    height: 80vh; /* Assure que la sidebar occupe toute la hauteur de l'écran */
-    box-shadow: 0 2px 8px #0000001a; /* Ombre légère */
-
-  }
-
-/* Logo section */
-.logo-section {
-    display: flex; /* Utilise Flexbox pour l'alignement */
-    flex-direction: column; /* Aligne les éléments en colonne par défaut */
-    align-items: center; /* Centre les éléments horizontalement */
-    margin-top: 30px;
+  padding: 10px; /* Espacement interne */
+  border-right: 0.2px solid #ccc; /* Ligne à droite */
+  position: relative; /* Définit un contexte de position pour les éléments absolus */
+  height: 100vh; /* Assure que la sidebar occupe toute la hauteur de l'écran */
+  box-shadow: 0 2px 8px #0000001a; /* Ombre légère */
+  width: 25%;
 }
+
 
 /* Sous-conteneur pour les logos */
 .logo-container {
-    display: flex; /* Utilise Flexbox pour l'alignement */
-    align-items: center; /* Centre les logos verticalement */
-    margin-bottom: 10px; /* Espacement en bas */
+  display: flex; /* Utilise Flexbox pour l'alignement */
+  align-items: center; /* Centre les logos verticalement */
+  margin-bottom: 10px; /* Espacement en bas */
 }
 
 /* Réduire la taille des logos */
 .logo {
-    max-width: 60px; /* Limite la taille du logo */
-    height: auto; /* Garde les proportions */
-    margin-right: 10px; /* Espacement à droite du logo */
+  max-width: 60px; /* Limite la taille du logo */
+  height: auto; /* Garde les proportions */
+  margin-right: 10px; /* Espacement à droite du logo */
 }
 
 .chatbot1 {
-    max-width: 60px; /* Limite la taille de chatbot1 */
-    height: auto; /* Garde les proportions */
-    margin-left: 10px; /* Ajout d'un petit espace à gauche de chatbot1 */
+  max-width: 60px; /* Limite la taille de chatbot1 */
+  height: auto; /* Garde les proportions */
+  margin-left: 10px; /* Ajout d'un petit espace à gauche de chatbot1 */
 }
 
 /* Titre de bienvenue */
 .welcome-header {
-    display: flex; /* Utilise Flexbox pour centrer le titre */
-    flex-direction: column; /* Aligne le titre et la ligne en colonne */
-    align-items: center; /* Centre le titre horizontalement */
+  display: flex; /* Utilise Flexbox pour centrer le titre */
+  flex-direction: column; /* Aligne le titre et la ligne en colonne */
+  align-items: center; /* Centre le titre horizontalement */
 }
 
 /* Titre de bienvenue */
-.welcome-header h1{
+.welcome-header h1 {
   display: flex; /* Utilise Flexbox pour centrer le titre */
   flex-direction: column; /* Aligne le titre et la ligne en colonne */
   align-items: center; /* Centre le titre horizontalement */
@@ -63,51 +54,44 @@
 }
 
 .options {
-    display: flex;
-    padding: 10px;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    top: -100px;
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  top: -100px;
 }
 
-  
 .sidebar-footer {
-    position: absolute; /* Positionnement absolu */
-    bottom: 0; /* Fixé en bas du conteneur parent */
-    left: 0; /* Aligne à gauche */
-    width: 100%; /* Prend toute la largeur de la sidebar */
-    padding: 10px; /* Espacement interne */
-    text-align: center; /* Centre le contenu horizontalement */
-    font-size: 14px; /* Taille de la police */
-    color: #0c0c0c; /* Couleur du texte */
-  }
-
-
-  
-
+  position: absolute; /* Positionnement absolu */
+  bottom: 0; /* Fixé en bas du conteneur parent */
+  left: 0; /* Aligne à gauche */
+  width: 100%; /* Prend toute la largeur de la sidebar */
+  padding: 10px; /* Espacement interne */
+  text-align: center; /* Centre le contenu horizontalement */
+  font-size: 14px; /* Taille de la police */
+  color: #0c0c0c; /* Couleur du texte */
+}
 
 /* Responsivité */
 @media (max-width: 1010px) {
-    .sidebar {
-        display: flex;
-        flex: 1;
-        width: 20%;
-        flex-direction: column;
-        height: 80vh;
+  .sidebar {
+    display: flex;
+    flex: 1;
+    width: 20%;
+    flex-direction: column;
+    height: 80vh;
+  }
 
-    }
+  .logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .logo-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
+  /*  =======================================================================*/
 
-/*  =======================================================================*/
-
-.logo-section {
+  .logo-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -115,22 +99,22 @@
     width: 100%;
     margin-bottom: 2rem;
   }
-  
+
   .logo-container {
     position: relative;
     width: 100%;
   }
-  
+
   .logo-container img:first-child {
     position: absolute;
     left: 0;
   }
-  
+
   .logo-container img:last-child {
     position: absolute;
     right: 0;
   }
-  
+
   .welcome-header {
     position: absolute;
     left: 50%;
@@ -138,596 +122,586 @@
     text-align: center;
   }
 
-
-
   .sidebar-footer {
     font-size: 0.77rem !important; /* Force la priorité */
     margin-top: -4rem;
     text-align: left;
   }
 
+  /*  =======================================================================*/
 
-/*  =======================================================================*/
- 
+  .menu-button {
+    display: block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background-color: #f0f0f0;
+    border: 1px solid black;
+    cursor: pointer;
+  }
 
+  .button-container {
+    width: 100%;
+    display: none;
+    padding: 0 10px;
+  }
 
-    .menu-button {
-        display: block;
-        margin-top: 10px;
-        padding: 10px 20px;
-        border-radius: 25px;
-        background-color: #f0f0f0;
-        border: 1px solid black;
-        cursor: pointer;
-    }
+  .button-container.show-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    justify-items: center;
+    width: 100%;
+    margin-top: 15px;
+  }
 
-    .button-container {
-        width: 100%;
-        display: none;
-        padding: 0 10px;
-    }
-
-    .button-container.show-buttons {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        justify-items: center;
-        width: 100%;
-        margin-top: 15px;
-    }
-
-    .button-container.show-buttons button {
-        width: 100%;
-        margin: 5px 0;
-    }
+  .button-container.show-buttons button {
+    width: 100%;
+    margin: 5px 0;
+  }
 }
-
 
 /* Ajuster le conteneur des boutons */
 .button-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 55%;
-    margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 55%;
+  margin-top: 10px;
 }
 
 /* Style pour les boutons */
 .options button {
-    background-color: white;
-    color: #0f0f10;
-    font-size: 8px;
-    font-weight: bold;
-    padding: 8px;
-    border-radius: 25px;
-    border: thin solid #0f0f10;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
+  background-color: white;
+  color: #0f0f10;
+  font-size: 8px;
+  font-weight: bold;
+  padding: 8px;
+  border-radius: 25px;
+  border: thin solid #0f0f10;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
 }
 
 /* Chat Section */
 .chat-container {
-    flex: 2; /* Prend tout l'espace disponible */
-    flex-direction: column; /* Place les enfants en colonne */
-    background-color: #ffffff; /* Couleur de fond du chat */
-    padding: 10px; /* Espacement interne */
-    box-shadow: 0 2px 8px #0000001a; /* Ombre légère */
-    overflow-y: auto; /* Permet le défilement si le contenu déborde */
-    position: relative; /* Définit un contexte de position pour les éléments absolus */
-    height: 80vh; /* Assure que la sidebar occupe toute la hauteur de l'écran */
+  flex: 2; /* Prend tout l'espace disponible */
+  flex-direction: column; /* Place les enfants en colonne */
+  background-color: #ffffff; /* Couleur de fond du chat */
+  padding: 10px; /* Espacement interne */
+  box-shadow: 0 2px 8px #0000001a; /* Ombre légère */
+  overflow-y: auto; /* Permet le défilement si le contenu déborde */
+  position: relative; /* Définit un contexte de position pour les éléments absolus */
+  height: 100vh; /* Assure que la sidebar occupe toute la hauteur de l'écran */
 }
-
 
 /* Autres styles pour le chat */
 .chat-header {
-    border-bottom: 2px solid #ddd; /* Ligne de séparation */
-    margin-bottom: 20px; /* Espacement en bas */
-    padding-bottom: 10px; /* Espacement interne */
-    padding-left: 0; /* Espacement interne */
-    font-size: 18px;
-    display: flex;
-    background-color: #EDECF2;
+  border-bottom: 2px solid #ddd; /* Ligne de séparation */
+  margin-bottom: 20px; /* Espacement en bas */
+  padding-bottom: 10px; /* Espacement interne */
+  padding-left: 0; /* Espacement interne */
+  font-size: 18px;
+  display: flex;
+  background-color: #edecf2;
 }
 
 .chat-icon-container {
-    margin-right: 10px; /* Espacement entre l'icône et le titre */
+  margin-right: 10px; /* Espacement entre l'icône et le titre */
 }
 
 .chat-icon {
-    font-size: 24px;  /* Ajustez la taille selon vos besoins */
-    color: #050342;
+  font-size: 24px; /* Ajustez la taille selon vos besoins */
+  color: #050342;
 }
 
 .chat-body {
-    flex: 1; /* Remplir l'espace disponible */
-    overflow-y: auto; /* Permet le défilement si le contenu déborde */
+  flex: 1; /* Remplir l'espace disponible */
+  overflow-y: auto; /* Permet le défilement si le contenu déborde */
 }
 
-
 .message-input {
-    flex: 1; /* Prend tout l'espace disponible */
-    padding: 10px; /* Espacement interne */
-    border-radius: 5px; /* Coins arrondis */
-    border: 1px solid #ccc; /* Bordure */
-    margin-right: 10px; /* Espacement entre l'input et le bouton */
+  flex: 1; /* Prend tout l'espace disponible */
+  padding: 10px; /* Espacement interne */
+  border-radius: 5px; /* Coins arrondis */
+  border: 1px solid #ccc; /* Bordure */
+  margin-right: 10px; /* Espacement entre l'input et le bouton */
 }
 
 .send-button {
-    padding: 10px 15px; /* Espacement interne */
-    border-radius: 5px; /* Coins arrondis */
-    background-color: #007bff; /* Couleur de fond du bouton */
-    color: white; /* Couleur du texte */
-    border: none; /* Pas de bordure */
-    cursor: pointer; /* Curseur pointer */
-    transition: background-color 0.3s; /* Animation pour le survol */
+  padding: 10px 15px; /* Espacement interne */
+  border-radius: 5px; /* Coins arrondis */
+  background-color: #007bff; /* Couleur de fond du bouton */
+  color: white; /* Couleur du texte */
+  border: none; /* Pas de bordure */
+  cursor: pointer; /* Curseur pointer */
+  transition: background-color 0.3s; /* Animation pour le survol */
 }
 
 .send-button:hover {
-    background-color: #63c46158; /* Couleur au survol */
-    border-radius: 15px;
-    padding: 10px 15px;
+  background-color: #63c46158; /* Couleur au survol */
+  border-radius: 15px;
+  padding: 10px 15px;
 }
 
 .title-underline {
-    border: none; /* Supprime la bordure par défaut */
-    border-top: 2px solid #ccc; /* Ligne grise en haut (ou aucune couleur) */
-    width: 120px; /* Largeur de la ligne */
-    margin: 10px 0; /* Espacement autour de la ligne */
+  border: none; /* Supprime la bordure par défaut */
+  border-top: 2px solid #ccc; /* Ligne grise en haut (ou aucune couleur) */
+  width: 120px; /* Largeur de la ligne */
+  margin: 10px 0; /* Espacement autour de la ligne */
 }
 
 .welcome-header {
-    text-align: center; /* Centre le texte */
-    margin-bottom: 10px; /* Espacement en bas */
+  text-align: center; /* Centre le texte */
+  margin-bottom: 10px; /* Espacement en bas */
 }
 
 .welcome-date {
-    color: #555; /* Couleur pour la date */
-    font-size: 14px; /* Taille de la police pour la date */
-    margin: 0; /* Supprime la marge par défaut */
+  color: #555; /* Couleur pour la date */
+  font-size: 14px; /* Taille de la police pour la date */
+  margin: 0; /* Supprime la marge par défaut */
 }
 
 /* Style pour l'image du chatbot 2 */
 .chatbot2 {
-    width: 120%; /* Limite la taille de chatbot2 */
-    height: auto; /* Garde les proportions */
-    display: block; /* Assure que l'image est un bloc */
-    margin: 0 auto; /* Centre l'image horizontalement */
+  width: 120%; /* Limite la taille de chatbot2 */
+  height: auto; /* Garde les proportions */
+  display: block; /* Assure que l'image est un bloc */
+  margin: 0 auto; /* Centre l'image horizontalement */
 }
 
 /* Sous-conteneur pour le message */
 .message-text-container {
-    border-radius: 15px; /* Coins arrondis */
-    max-width: 55%; /* Limite la largeur pour le texte */
-    text-align: left; /* Aligne le texte à gauche */
-    bottom: 0;
-    overflow-wrap: break-word; /* Permet de couper les mots pour éviter le débordement */
-    word-wrap: break-word; /* Pour les anciens navigateurs */
-    overflow: hidden; /* Cache le débordement */
-    position: relative;
-    transition: all 0.3s ease;
+  border-radius: 15px; /* Coins arrondis */
+  max-width: 55%; /* Limite la largeur pour le texte */
+  text-align: left; /* Aligne le texte à gauche */
+  bottom: 0;
+  overflow-wrap: break-word; /* Permet de couper les mots pour éviter le débordement */
+  word-wrap: break-word; /* Pour les anciens navigateurs */
+  overflow: hidden; /* Cache le débordement */
+  position: relative;
+  transition: all 0.3s ease;
 }
 
 /* Style pour le texte du message */
 .message-text {
-    font-size: 14px; /* Taille de la police */
-    color: #050342; /* Couleur du texte */
-    line-height: 1.4; /* Hauteur de ligne pour une meilleure lisibilité */
-    margin: 0; /* Supprime la marge par défaut */
-    padding: 10px; /* Ajoute un peu d'espace autour du texte */
-    background-color: #E6FCE5;
-    border-image-width: 100%;
+  font-size: 14px; /* Taille de la police */
+  color: #050342; /* Couleur du texte */
+  line-height: 1.4; /* Hauteur de ligne pour une meilleure lisibilité */
+  margin: 0; /* Supprime la marge par défaut */
+  padding: 10px; /* Ajoute un peu d'espace autour du texte */
+  background-color: #e6fce5;
+  border-image-width: 100%;
 }
 
 .message-text p {
-    max-height: 4.5em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    line-clamp: 3;
-    transition: all 0.3s ease;
-    margin: 0;
-    bottom: 0;
-    }
+  max-height: 4.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  transition: all 0.3s ease;
+  margin: 0;
+  bottom: 0;
+}
 
 /* Style pour le conteneur du h2 et du p */
 /* Header Content */
 .header-content {
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    padding: 15px;
-    background-color: #EDECF2;
-    border-bottom: 1px solid #ddd;
-    justify-content: space-between;
-    width: 100%;
-    height: 4rem;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  padding: 15px;
+  background-color: #edecf2;
+  border-bottom: 1px solid #ddd;
+  justify-content: space-between;
+  width: 100%;
+  height: 4rem;
 }
 
 .text-date {
-    color: #050342;
-    font-size: 18px;
-    top: 0;
-    padding: 10px;
+  color: #050342;
+  font-size: 18px;
+  top: 0;
+  padding: 10px;
 }
 
 .header-date {
-    font-size: 12px;
-    color: green;
-    display: flex;
-    left: 30%;
+  font-size: 12px;
+  color: green;
+  display: flex;
+  left: 30%;
 }
 
 .header-icon {
-    font-size: 12px;
-    color: #050342;
-    margin-right: 5px;
+  font-size: 12px;
+  color: #050342;
+  margin-right: 5px;
 }
 
 /* Chat Body */
 .chat-body {
-    padding: 20px;
-    background-color: #ffffff;
-    min-height: 300px;
+  padding: 20px;
+  background-color: #ffffff;
+  min-height: 300px;
 }
 .bot-message {
-    height: 100%;
-    padding-left: 10px;
-    margin-top: 8rem;
+  height: 100%;
+  padding-left: 10px;
+  margin-top: 8rem;
 }
 
 .bot-message {
-    display: flex;
-    flex-direction: column; /* Affiche l'image au-dessus du texte */
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column; /* Affiche l'image au-dessus du texte */
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .avatar img.chatbot2 {
-    max-width: 60px;
-    display: block;
-    margin-right: 15px;
+  max-width: 60px;
+  display: block;
+  margin-right: 15px;
 }
 
 .input-container {
-    position: absolute; /* Positionnement absolu */
-    bottom: 0; /* Fixé en bas du conteneur parent */
-    left: 0; /* Aligne à gauche */
-    width: 100%; /* Prend toute la largeur de la sidebar */
-    padding: 10px; /* Espacement interne */
-    text-align: center; /* Centre le contenu horizontalement */
-    font-size: 14px; /* Taille de la police */
-    color: #0c0c0c; /* Couleur du texte */
+  position: absolute; /* Positionnement absolu */
+  bottom: 0; /* Fixé en bas du conteneur parent */
+  left: 0; /* Aligne à gauche */
+  width: 100%; /* Prend toute la largeur de la sidebar */
+  padding: 10px; /* Espacement interne */
+  text-align: center; /* Centre le contenu horizontalement */
+  font-size: 14px; /* Taille de la police */
+  color: #0c0c0c; /* Couleur du texte */
 }
 
 .message-input {
-    flex: 1;
-    border: 1px solid #ffff;
-    border-radius: 20px;
-    margin-right: 10px;
-    background-color: #EDECF2;
-    width: 100%; /* Prend toute la largeur du conteneur */
-    padding-right: 40px; /* Ajoute de l'espace à droite pour le bouton */
-    box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+  flex: 1;
+  border: 1px solid #ffff;
+  border-radius: 20px;
+  margin-right: 10px;
+  background-color: #edecf2;
+  width: 100%; /* Prend toute la largeur du conteneur */
+  padding-right: 40px; /* Ajoute de l'espace à droite pour le bouton */
+  box-sizing: border-box; /* Inclut le padding dans la largeur totale */
 }
 
 .send-button {
-    cursor: pointer;
-    font-size: 18px;
-    position: absolute; /* Positionne le bouton par rapport au conteneur */
-    right: 10px; /* Décale le bouton à 10px du bord droit */
-    top: 50%; /* Centre verticalement par rapport à l'input */
-    transform: translateY(-50%); /* Ajuste le positionnement vertical */
+  cursor: pointer;
+  font-size: 18px;
+  position: absolute; /* Positionne le bouton par rapport au conteneur */
+  right: 10px; /* Décale le bouton à 10px du bord droit */
+  top: 50%; /* Centre verticalement par rapport à l'input */
+  transform: translateY(-50%); /* Ajuste le positionnement vertical */
 }
 
-.fa-paper-plane{
-    background-color: transparent;
-    color: #7675D3;
+.fa-paper-plane {
+  background-color: transparent;
+  color: #7675d3;
 }
 
 .icon-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
 }
 
 /* Chat Body */
 .chat-body {
-    padding: 15px; /* Alignement du padding */
-    background-color: #ffffff;
-    min-height: 300px;
+  padding: 15px; /* Alignement du padding */
+  background-color: #ffffff;
+  min-height: 300px;
 }
 
 /* Bot Message */
 .bot-message {
-    display: flex;
-    align-items: flex-start; /* Alignement à gauche */
-    gap: 15px; /* Espacement entre l'image et le message */
-    margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start; /* Alignement à gauche */
+  gap: 15px; /* Espacement entre l'image et le message */
+  margin-bottom: 20px;
 }
 
 /* Avatar Image */
 .avatar img.chatbot2 {
-    max-width: 80px;
-    height: auto;
+  max-width: 80px;
+  height: auto;
 }
 
 /* Message Text Container */
 .message-text-container {
-    border-radius: 15px;
-    max-width: 55%; /* Limite la largeur pour le texte */
-    text-align: left;
-    bottom: 0;
+  border-radius: 15px;
+  max-width: 55%; /* Limite la largeur pour le texte */
+  text-align: left;
+  bottom: 0;
 }
 
 /* Message Text */
 .message-text {
-    font-size: 14px;
-    color: #050342;
-    line-height: 1.4;
-    margin: 0;
-    width: 100%;
-    background-color: #E6FCE5;
+  font-size: 14px;
+  color: #050342;
+  line-height: 1.4;
+  margin: 0;
+  width: 100%;
+  background-color: #e6fce5;
 }
 
 /* Message Time */
 .message-time {
-    display: block;
-    font-size: 10px;
-    color: #888;
-    margin-top: 8px;
-    text-align: right;
+  display: block;
+  font-size: 10px;
+  color: #888;
+  margin-top: 8px;
+  text-align: right;
 }
 
 .avatar {
-    display: flex; /* Utilise Flexbox pour centrer le contenu */
-    justify-content: center; /* Centre horizontalement */
-    align-items: center; /* Centre verticalement */
-    margin: 0 auto; /* Assure que l'avatar est centré dans son conteneur */
-    margin-left: 15%; /* Décale l'avatar légèrement vers la droite */
-    padding-top: 3rem;
+  display: flex; /* Utilise Flexbox pour centrer le contenu */
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  margin: 0 auto; /* Assure que l'avatar est centré dans son conteneur */
+  margin-left: 15%; /* Décale l'avatar légèrement vers la droite */
+  padding-top: 3rem;
 }
 
 .chat-body {
-    display: block; /* Assurez-vous que le corps du chat utilise Flexbox */
-    flex-direction: column; /* Aligne les messages verticalement */
-    align-items: center; /* Centre les messages horizontalement */
+  display: block; /* Assurez-vous que le corps du chat utilise Flexbox */
+  flex-direction: column; /* Aligne les messages verticalement */
+  align-items: center; /* Centre les messages horizontalement */
 }
 
 .sidebar-footer {
-    text-align: center;
+  text-align: center;
 }
 
 .error-message {
-    margin-top: 5px; /* Espacement au-dessus du message d'erreur */
-    font-size: 12px; /* Taille de la police pour le message d'erreur */
+  margin-top: 5px; /* Espacement au-dessus du message d'erreur */
+  font-size: 12px; /* Taille de la police pour le message d'erreur */
 }
 
 /* Styles pour le menu des boutons */
 .menu-button {
-    display: none; /* Cache le bouton menu en mode desktop */
+  display: none; /* Cache le bouton menu en mode desktop */
 }
 
 /* Cacher les boutons par défaut */
 .button-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 55%;
-    margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 55%;
+  margin-top: 10px;
 }
 
 /* Affiche les boutons lorsque le menu est cliqué */
 .show-buttons {
-    display: flex; /* Affiche les boutons en flex */
-    flex-direction: column; /* Aligne les boutons en colonne */
-    align-items: center; /* Centre les boutons horizontalement */
+  display: flex; /* Affiche les boutons en flex */
+  flex-direction: column; /* Aligne les boutons en colonne */
+  align-items: center; /* Centre les boutons horizontalement */
 }
 
 /* Styles pour le message réduit */
 .message-text {
-    max-height: 3em; /* Limite la hauteur à 2 lignes */
-    overflow: hidden; /* Cache le débordement */
-    text-overflow: ellipsis; /* Affiche des points de suspension */
-    display: -webkit-box; /* Utilise un box model pour le texte */
-    -webkit-line-clamp: 2; /* Limite à 2 lignes */
-    -webkit-box-orient: vertical; /* Définit l'orientation de la boîte */
-    line-clamp: 2; /* Ajout de la propriété standard */
-    border-radius: 10px;
-    padding: 10px;
+  max-height: 3em; /* Limite la hauteur à 2 lignes */
+  overflow: hidden; /* Cache le débordement */
+  text-overflow: ellipsis; /* Affiche des points de suspension */
+  display: -webkit-box; /* Utilise un box model pour le texte */
+  -webkit-line-clamp: 2; /* Limite à 2 lignes */
+  -webkit-box-orient: vertical; /* Définit l'orientation de la boîte */
+  line-clamp: 2; /* Ajout de la propriété standard */
+  border-radius: 10px;
+  padding: 10px;
 }
 
 /* Styles pour le bouton "Voir plus" */
 .see-more {
-    color: #007bff; /* Couleur du texte */
-    cursor: pointer; /* Curseur pointer */
-    margin-top: 5px; /* Espacement au-dessus */
-    font-size: 12px; /* Taille de la police */
-    display: none; /* Masque par défaut */
-    margin-bottom: 20px; /* Espacement au-dessus */
+  color: #007bff; /* Couleur du texte */
+  cursor: pointer; /* Curseur pointer */
+  margin-top: 5px; /* Espacement au-dessus */
+  font-size: 12px; /* Taille de la police */
+  display: none; /* Masque par défaut */
+  margin-bottom: 20px; /* Espacement au-dessus */
 }
 
 /* Affiche le bouton "Voir plus" lorsque le message est réduit */
-  /* Ajustement des conteneurs en mode expanded */
+/* Ajustement des conteneurs en mode expanded */
 .message-text-container.expanded,
 .message-text-container.expanded .message-text,
 .message-text-container.expanded .message-text p {
-    height: fit-content !important;
-    max-height: unset !important;
-    -webkit-line-clamp: unset !important;
-    line-clamp: unset !important;
-    display: block !important;
-    overflow: visible !important;
-    white-space: normal !important;
-    }
+  height: fit-content !important;
+  max-height: unset !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+  display: block !important;
+  overflow: visible !important;
+  white-space: normal !important;
+}
 
 /* Responsivité */
 @media (max-width: 1010px) {
-    .header-title {
-        width: 100%;
-        display: flex; /* Cache le titre h2 en mode responsive */
-        font-size: 0.55rem;
-        border-radius: 10px;
-    }
+  .header-title {
+    width: 100%;
+    display: flex; /* Cache le titre h2 en mode responsive */
+    font-size: 0.55rem;
+    border-radius: 10px;
+  }
 
-    .doctor-image {
-        display: block; /* Affiche uniquement l'image du docteur */
-        margin: 10px 0; /* Espacement autour de l'image */
-    }
+  .doctor-image {
+    display: block; /* Affiche uniquement l'image du docteur */
+    margin: 10px 0; /* Espacement autour de l'image */
+  }
 
-    .button-container {
-        display: none; /* Cache les boutons par défaut en mobile */
-    }
+  .button-container {
+    display: none; /* Cache les boutons par défaut en mobile */
+  }
 
-    .button-container.show-buttons {
-        display: flex; /* Affiche les boutons quand activé en mobile */
-        flex-direction: column;
-        align-items: center;
-    }
+  .button-container.show-buttons {
+    display: flex; /* Affiche les boutons quand activé en mobile */
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .menu-button {
-        display: block; /* Affiche le bouton menu en mobile */
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 10px;
-    }
+  .menu-button {
+    display: block; /* Affiche le bouton menu en mobile */
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
 }
 
 /* Style par défaut (mode normal) - message complet */
 .message-text {
-    overflow: visible;
-    text-overflow: unset;
-    display: block;
-    max-height: none;
-    line-clamp: unset;
-    -webkit-line-clamp: unset;
+  overflow: visible;
+  text-overflow: unset;
+  display: block;
+  max-height: none;
+  line-clamp: unset;
+  -webkit-line-clamp: unset;
 }
 
 .see-more {
-    display: none; /* Cache le bouton voir plus en mode normal */
+  display: none; /* Cache le bouton voir plus en mode normal */
 }
 
 /* Mode responsive - message limité à 2 lignes */
 @media (max-width: 976px) {
-    .message-text {
-        max-height: 4.5em; /* Hauteur pour 3 lignes (1.5em par ligne) */
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 3; /* Limite à 3 lignes */
-        -webkit-box-orient: vertical;
-        line-clamp: 3;
-    }
+  .message-text {
+    max-height: 4.5em; /* Hauteur pour 3 lignes (1.5em par ligne) */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limite à 3 lignes */
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+  }
 
-    .message-text.expanded {
-        max-height: none;
-        -webkit-line-clamp: unset;
-        line-clamp: unset;
-    }
+  .message-text.expanded {
+    max-height: none;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+  }
 
-    .see-more {
-        display: block;
-        color: #007bff;
-        cursor: pointer;
-        margin-top: 5px;
-        font-size: 12px;
-        text-align: right;
-        content: "Lire la suite"; /* Texte du bouton */
-    }
+  .see-more {
+    display: block;
+    color: #007bff;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 12px;
+    text-align: right;
+    content: "Lire la suite"; /* Texte du bouton */
+  }
 
-    .see-more.hidden {
-        display: none;
-    }
+  .see-more.hidden {
+    display: none;
+  }
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
+  .app-container {
+    width: 100%; /* Largeur maximale */
+    margin: 1rem auto; /* Centrer dans la page */
+    padding: 20px;
+    background-color: #f9f9f9; /* Couleur de fond */
+    overflow: hidden; /* Cache le débordement */
+    display: flex;
+    flex: 1;
+    padding-top: 0;
+    flex-direction: column;
+  }
 
-    .app-container {
-        width: 100%; /* Largeur maximale */
-        margin: 1rem auto; /* Centrer dans la page */
-        padding: 20px;
-        background-color: #f9f9f9; /* Couleur de fond */
-        overflow: hidden; /* Cache le débordement */
-        display: flex;
-        flex: 1;
-        padding-top: 0;
-        flex-direction: column;
-    }
+  .sidebar {
+    display: flex; /* Utilise Flexbox pour l'alignement */
+    flex-direction: column; /* Aligne les éléments en colonne */
+    justify-content: space-between; /* Espace entre les éléments pour pousser le footer en bas */
+    height: 100vh; /* Hauteur de la fenêtre */
+    width: 80%; /* Largeur de la sidebar */
+  }
 
-    .sidebar {
-        display: flex; /* Utilise Flexbox pour l'alignement */
-        flex-direction: column; /* Aligne les éléments en colonne */
-        justify-content: space-between; /* Espace entre les éléments pour pousser le footer en bas */
-        height: 100vh; /* Hauteur de la fenêtre */
-        width: 80%; /* Largeur de la sidebar */
-    }
+  .sidebar-footer {
+    position: absolute;
+    display: flex; /* Utilise Flexbox pour l'alignement */
+    flex: 1;
+    width: 80%; /* Largeur de la sidebar */
+    bottom: 0;
+  }
 
-    .sidebar-footer {
-        position: absolute;
-        display: flex; /* Utilise Flexbox pour l'alignement */
-        flex: 1;
-        width: 80%; /* Largeur de la sidebar */
-        bottom:0;
-    }
-    
-    .logo-section {
-        display: flex; /* Utilise flexbox pour aligner les éléments */
-        align-items: center; /* Centre verticalement les éléments */
-        justify-content: space-between; /* Espace entre les logos et le titre */
-        padding: 10px; /* Espacement interne */
-    }
-    
-    .logo-container {
-        display: flex; /* Utilise flexbox pour les logos */
-        flex: 1; /* Prend tout l'espace disponible */
-        justify-content: flex-start; /* Aligne le premier logo à gauche */
-    }
-    
-    .welcome-header {
-        display: flex; /* Utilise flexbox pour le titre */
-        flex: 1; /* Prend tout l'espace disponible */
-        justify-content: center; /* Centre le titre horizontalement */
-        flex-direction: column; /* Aligne le titre et la ligne de soulignement en colonne */
-    }
-    
-    .title-underline {
-        width: 100%; /* Prend toute la largeur du conteneur */
-        border: 1px solid #ddd; /* Style de la ligne */
-        margin-top: 5px; /* Espacement au-dessus de la ligne */
-    }
-    
-    .welcome-header h1 {
-        color: #050342; /* Couleur du titre */
-        margin: 0; /* Supprime le margin par défaut */
-    }
-    
-    /* Styles pour le footer */
-    .sidebar-footer {
-        margin-top: auto; /* Pousse le footer vers le bas */
-        background-color: #f9f9f9; /* Couleur de fond du footer */
-        text-align: center; /* Centre le texte dans le footer */
-    }
+  .logo-section {
+    display: flex; /* Utilise flexbox pour aligner les éléments */
+    align-items: center; /* Centre verticalement les éléments */
+    justify-content: space-between; /* Espace entre les logos et le titre */
+    padding: 10px; /* Espacement interne */
+  }
 
+  .logo-container {
+    display: flex; /* Utilise flexbox pour les logos */
+    flex: 1; /* Prend tout l'espace disponible */
+    justify-content: flex-start; /* Aligne le premier logo à gauche */
+  }
 
-    .options{
-        display: none;
-    }
+  .welcome-header {
+    display: flex; /* Utilise flexbox pour le titre */
+    flex: 1; /* Prend tout l'espace disponible */
+    justify-content: center; /* Centre le titre horizontalement */
+    flex-direction: column; /* Aligne le titre et la ligne de soulignement en colonne */
+  }
 
-    a {
-        text-decoration: underline; /* Souligner tous les liens */
-      }
+  .title-underline {
+    width: 100%; /* Prend toute la largeur du conteneur */
+    border: 1px solid #ddd; /* Style de la ligne */
+    margin-top: 5px; /* Espacement au-dessus de la ligne */
+  }
 
-    /*  =======================================================================*/
+  .welcome-header h1 {
+    color: #050342; /* Couleur du titre */
+    margin: 0; /* Supprime le margin par défaut */
+  }
 
-.logo-section {
+  /* Styles pour le footer */
+  .sidebar-footer {
+    margin-top: auto; /* Pousse le footer vers le bas */
+    background-color: #f9f9f9; /* Couleur de fond du footer */
+    text-align: center; /* Centre le texte dans le footer */
+  }
+
+  .options {
+    display: none;
+  }
+
+  a {
+    text-decoration: underline; /* Souligner tous les liens */
+  }
+
+  /*  =======================================================================*/
+
+  .logo-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -735,24 +709,24 @@
     width: 100%;
     margin-bottom: 2rem;
   }
-  
+
   .logo-container {
     position: relative;
     width: 100%;
   }
-  
+
   .logo-container img:first-child {
     position: absolute;
-    left: 0; 
+    left: 0;
     width: 20%;
   }
-  
+
   .logo-container img:last-child {
     position: absolute;
     right: 0;
     width: 20%;
   }
-  
+
   .welcome-header {
     position: absolute;
     left: 47%;
@@ -760,33 +734,31 @@
     text-align: center;
   }
 
-
   .sidebar-footer {
     font-size: 0.77rem !important; /* Force la priorité */
     margin-top: -1.5rem;
     text-align: center;
   }
 
-  .sidebar-footer a{
+  .sidebar-footer a {
     width: 100%;
     display: left;
     font-size: 0.55rem;
-
   }
 
-    /*  =======================================================================*/
-   /* Conteneur principal de l'en-tête */
-.chat-header {
+  /*  =======================================================================*/
+  /* Conteneur principal de l'en-tête */
+  .chat-header {
     display: flex;
     flex: 2;
     flex-direction: row;
     justify-content: space-between; /* Espace entre les éléments */
-    background-color: #ECECF1; /* Fond gris clair */
+    background-color: #ececf1; /* Fond gris clair */
     width: 100%; /* Largeur pleine */
     height: 70px; /* Hauteur de 50px */
     padding: 0 10px; /* Espacement interne horizontal */
   }
-  
+
   /* Conteneur interne de l'en-tête */
   .header-content {
     display: flex;
@@ -794,7 +766,7 @@
     width: 100%;
     height: 100%; /* Hauteur de 100% du parent */
   }
-  
+
   /* Conteneur texte et date */
   .text-date {
     flex-direction: column;
@@ -806,7 +778,7 @@
     box-sizing: border-box;
     display: left;
   }
-  
+
   /* Titre */
   .text-date h2 {
     font-weight: bold;
@@ -816,7 +788,7 @@
     flex: 1; /* Prendre toute la hauteur disponible */
     line-height: 1.2; /* Ajuster l'espacement entre les lignes */
   }
-  
+
   /* Date */
   .text-date p {
     margin: 0;
@@ -824,15 +796,14 @@
     font-size: 0.9rem; /* Taille de texte relative */
     line-height: 1.2; /* Ajuster l'espacement entre les lignes */
     font-size: 0.55rem;
-    
   }
 
-  .header-date{
+  .header-date {
     top: -20px;
     width: 100%;
     display: flex;
   }
-  
+
   /* Image du chatbot */
   .chatbot2 {
     width: 40px; /* Taille de l'image du chatbot */
@@ -840,7 +811,7 @@
     border-radius: 50%;
     align-self: flex-start; /* Positionner l'image en haut à droite */
   }
-  
+
   /* Image du docteur */
   .doctor-image {
     width: 40px; /* Taille de l'image du docteur */
@@ -855,67 +826,60 @@
     padding-right: 0;
     border-radius: none;
   }
-      
-    
-    /* Styles pour mobile */
+
+  /* Styles pour mobile */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%; /* Prend toute la largeur sur mobile */
+    }
+
+    .logo-section {
+      flex-direction: row; /* Aligne les éléments en ligne */
+    }
+
+    .welcome-header {
+      margin: 0 10px; /* Espacement pour le titre */
+    }
+
+    /* CSS pour le comportement sur les écrans de 768px ou moins */
     @media (max-width: 768px) {
-        .sidebar {
-            width: 100%; /* Prend toute la largeur sur mobile */
-        }
-        
-        .logo-section {
-            flex-direction: row; /* Aligne les éléments en ligne */
-        }
-        
-        .welcome-header {
-            margin: 0 10px; /* Espacement pour le titre */
-        }
+      .message-text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 100%; /* S'assurer que le conteneur prend toute la hauteur disponible */
+      }
 
+      .sidebar-text {
+        font-size: 0.77px;
+        text-align: center; /* Centrer le titre */
+        margin-bottom: 15px; /* Espacement sous le titre */
+      }
 
-        /* CSS pour le comportement sur les écrans de 768px ou moins */
-@media (max-width: 768px) {
-    .message-text-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      height: 100%; /* S'assurer que le conteneur prend toute la hauteur disponible */
-    }
-  
-    .sidebar-text {
-      font-size: 0.77px;
-      text-align: center; /* Centrer le titre */
-      margin-bottom: 15px; /* Espacement sous le titre */
-    }
-  
-    .button-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%; /* Largeur pleine pour les boutons */
-      margin-top: 15px; /* Espacement au-dessus des boutons */
-    }
-  
-    .button-container button {
-      width: 80%; /* Largeur des boutons réduite pour mieux s'adapter */
-      margin-bottom: 10px; /* Espacement entre les boutons */
-      padding: 10px;
-      background-color: #f0f0f0;
-      color: black;
-      border: 1px solid black;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-  
-    /* Lorsque les boutons sont affichés */
-    .button-container.show-buttons button {
-      display: block; /* S'assurer que les boutons sont visibles */
+      .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%; /* Largeur pleine pour les boutons */
+        margin-top: 15px; /* Espacement au-dessus des boutons */
+      }
+
+      .button-container button {
+        width: 80%; /* Largeur des boutons réduite pour mieux s'adapter */
+        margin-bottom: 10px; /* Espacement entre les boutons */
+        padding: 10px;
+        background-color: #f0f0f0;
+        color: black;
+        border: 1px solid black;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      /* Lorsque les boutons sont affichés */
+      .button-container.show-buttons button {
+        display: block; /* S'assurer que les boutons sont visibles */
+      }
     }
   }
-  
-        
-    }
-    
 }
-  
-  

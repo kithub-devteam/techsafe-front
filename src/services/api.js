@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Créer une instance axios personnalisée
 const api = axios.create({
-  baseURL: "https://techsafe-backend-0l8r.onrender.com/api/", //l'url de l'api
+  baseURL: "http://192.168.0.140:8000/api/", //l'url de l'api
   headers: {
     "Content-Type": "application/json", //le type de contenu de la requête
     Accept: "application/json", //pour permettre l'envoi de cookies
